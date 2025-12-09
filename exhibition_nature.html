@@ -169,23 +169,6 @@
             text-shadow: 0 0 10px rgba(168,148,118,0.5);
         }
 
-        /* 特殊线索样式 (春燕图弹窗) */
-        .special-clue {
-            font-size: 1.4em;
-            color: #e4dccf;
-            cursor: pointer;
-            margin: 0 4px;
-            transition: all 0.4s ease;
-            line-height: 1;
-            vertical-align: middle;
-            text-shadow: 0 0 5px rgba(228, 220, 207, 0.1);
-        }
-        .special-clue:hover {
-            color: #a89476;
-            text-shadow: 0 0 20px rgba(168, 148, 118, 0.8);
-            transform: scale(1.15);
-        }
-
         /* 4. 底部预约 */
         .cta-box {
             text-align: center; padding: 4rem;
@@ -199,23 +182,6 @@
             margin-top: 2rem;
         }
         .cta-btn:hover { background: #e4dccf; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
-
-        /* --- 隐藏线索弹窗 --- */
-        .secret-modal {
-            display: none;
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 10000;
-            opacity: 0; transition: opacity 0.5s ease;
-            align-items: center; justify-content: center;
-        }
-        .secret-modal.active { display: flex; opacity: 1; }
-        .secret-img {
-            max-width: 90%; max-height: 90vh;
-            box-shadow: 0 0 50px rgba(168, 148, 118, 0.3);
-            border: 1px solid rgba(168, 148, 118, 0.5);
-            animation: zoomIn 0.5s ease;
-        }
 
         /* 动画 */
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -319,17 +285,7 @@
                     </div>
                 </div>
 
-                <div class="work-card">
-                    <div class="work-img-wrapper">
-                        <img src="春燕图.jpg" class="work-img" alt="春燕图">
-                    </div>
-                    <div class="work-meta">
-                        <h3 class="work-title">春<span class="special-clue" onclick="openSecret()">燕</span>图</h3>
-                        <div class="work-desc">翠柳如烟，玄鸟归堂，笔墨于动静之间剪裁出春日的盎然生机，让那一声声呢喃燕语，仿佛穿越纸背，落入心间。</div>
-                    </div>
                 </div>
-
-            </div>
         </section>
 
         <div class="cta-box">
@@ -342,10 +298,6 @@
             <p>憩园 · 仅供预约访客 | 地址不载于公共图册</p>
             <p>© 2015 Qiyuan. All Serenity Reserved.</p>
         </footer>
-    </div>
-
-    <div id="secretModal" class="secret-modal" onclick="closeSecret()">
-        <img src="壹.jpg" class="secret-img" alt="Secret Clue">
     </div>
 
     <script>
@@ -373,14 +325,6 @@
 
             cards.forEach(card => observer.observe(card));
         });
-
-        // --- 神秘弹窗逻辑 ---
-        function openSecret() {
-            document.getElementById('secretModal').classList.add('active');
-        }
-        function closeSecret() {
-            document.getElementById('secretModal').classList.remove('active');
-        }
     </script>
 </body>
 </html>
