@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>序章</title>
+    <style>
+        /* --- 全局设置 --- */
+        :root {
+            --theme-orange: #ff6b00;       /* 主题活力橙 */
+            --theme-orange-light: #fff5eb; /* 浅橙色背景用于强调 */
+            --text-dark: #2c3e50;          /* 深色正文，比纯黑更柔和 */
+            --text-gray: #546e7a;          /* 辅助灰色文字 */
+            --bg-page: #f7f9fb;            /* 页面背景-极淡的灰调 */
+            --bg-paper: #ffffff;           /* 内容背景-纯白 */
+        }
+
+        body {
+            /* 使用现代系统字体栈，阅读体验更好 */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-dark);
+            line-height: 1.9; /* 稍微增加行高，更透气 */
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            /* 顶部加一条橙色细线，增加精致感 */
+            border-top: 4px solid var(--theme-orange);
+        }
+
+        /* --- 内容容器 (核心改动) --- */
+        .container {
+            max-width: 760px;
+            width: 100%;
+            background-color: var(--bg-paper);
+            /* 增加圆角和柔和的阴影，制造“纸张感”和层次 */
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+            padding: 50px; /* 增加内部留白 */
+            box-sizing: border-box;
+        }
+
+        /* 针对移动端的优化 */
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            margin-bottom: 45px;
+            font-weight: 700;
+            /* 去掉底部边框，改为左侧橙色装饰条 */
+            border-bottom: none;
+            padding-bottom: 0;
+            position: relative;
+            padding-left: 18px;
+        }
+
+        /* 标题左侧的橙色装饰条 */
+        h1::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            bottom: 5px;
+            width: 6px;
+            background-color: var(--theme-orange);
+            border-radius: 4px;
+        }
+
+        p {
+            margin-bottom: 28px;
+            font-size: 1.08rem;
+            text-align: justify;
+            letter-spacing: 0.02em; /* 微调字间距 */
+        }
+
+        /* --- 重点文字优化 --- */
+        strong {
+            font-weight: bold;
+            color: var(--theme-orange);
+            /* 增加淡淡的荧光笔背景效果 */
+            background-color: var(--theme-orange-light);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin: 0 2px;
+        }
+
+        /* --- 链接样式优化 --- */
+        a {
+            color: var(--theme-orange);
+            text-decoration: none; /* 去掉默认下划线 */
+            cursor: pointer;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            background-color: rgba(255, 107, 0, 0.05); /* 默认微弱背景 */
+        }
+        /* 鼠标悬停效果 */
+        a:hover {
+            color: #fff;
+            background-color: var(--theme-orange); /* 悬停变实色背景 */
+        }
+
+        /* --- 图片样式优化 --- */
+        .object-image {
+            display: block;
+            max-width: 100%;
+            width: auto;
+            /* 限制最大高度，防止图片过大 */
+            max-height: 450px; 
+            margin: 50px auto;
+            /* 去掉旧边框，改为圆角和拟真投影 */
+            border: none;
+            padding: 0;
+            background: none;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+            transition: transform 0.3s ease;
+        }
+        
+        /* 图片轻微悬浮效果 */
+        .object-image:hover {
+             transform: translateY(-5px);
+        }
+
+        /* --- 结尾提示框优化 --- */
+        .ending-note {
+            margin-top: 60px;
+            padding: 25px 30px;
+            /* 使用更柔和的背景色和圆角 */
+            background-color: var(--theme-orange-light);
+            border-left: none; /* 去掉生硬的左边框 */
+            border-radius: 12px;
+            color: #d35400; /*稍微深一点的橙棕色文字，增加质感*/
+            font-size: 1.05rem;
+            font-weight: 500;
+            display: flex; /* 使用flex布局对齐图标 */
+            align-items: flex-start;
+        }
+        
+        /* 加一个小图标增加提示感 */
+        .ending-note::before {
+            content: '📝';
+            font-size: 1.4rem;
+            margin-right: 15px;
+            line-height: 1.2;
+        }
+
+        /* 结尾提示框里的链接特殊处理，使其融合 */
+        .ending-note a {
+            background-color: transparent;
+            color: #d35400;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            padding: 0;
+        }
+        .ending-note a:hover {
+             background-color: transparent;
+             color: var(--theme-orange);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <h1>今天是 2015年6月19日，星期五。</h1>
+        
+        <p>你叫 <strong>赵轻奕</strong>，一家科技公司的普通员工。</p>
+        
+        <p>你上司 <strong>郑群超</strong> 上午塞给你一个麻烦事：帮公司 CEO 把一尊看上去就价值不菲的 <strong>张果老木雕</strong>，退给一家叫“憩园”的古董店。东西现在就在你手边。</p>
+        
+        <p>你已经按他给的网址，在“憩园”的网站上填了退货预约。但那网站规矩多，必须提前预约才能前往，问得也特别细。这还不算完，你刚收到回复，说你这木雕“和记录对不上”，暂时不能提供退货服务。
+            <a href="work_chat.html">点击查看回复</a>
+        </p>
+        
+        <p>郑群超一直在催，说老板也在催，今天非要拿到预约成功的回执不可。哪怕再发消息恐怕也不会搭理你了。
+            <a href="chat.html">点击查看消息</a>
+        </p>
+        
+        <img src="张果老赝品.jpg" alt="张果老赝品" class="object-image">
+
+        <div class="ending-note">
+            <span>
+                看样子你今天非得拿出个解决方法来，但现在你手头只有这个木雕，和憩园古董店的<a href="home.html">官方网站</a>。
+            </span>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>留下</title>
+    <style>
+        /* --- 基础设置 --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'SimSun', 'Songti SC', serif; /* 宋体，沉浸式阅读 */
+            background-color: #000000;
+            color: #dcdcdc; /* 略微灰暗的白色，不刺眼 */
+            line-height: 2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            overflow-x: hidden;
+            /* 修改点1：整体基础字体调大 */
+            font-size: 18px; 
+        }
+
+        /* --- 内容容器 --- */
+        .container {
+            max-width: 650px; /* 稍微调宽一点适应大字体 */
+            width: 100%;
+            text-align: left;
+            opacity: 0; /* 初始隐藏 */
+            animation: emerge 3s ease forwards; /* 缓慢浮现 */
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 标题/首句 */
+        h1 {
+            /* 修改点1：标题字体显著调大 */
+            font-size: 2.2rem;
+            font-weight: normal;
+            color: #fff;
+            margin-bottom: 50px;
+            text-align: center;
+            letter-spacing: 8px;
+        }
+
+        p {
+            margin-bottom: 2.5rem;
+            text-align: justify;
+        }
+
+        /* 引用李振的话，稍微变色 */
+        .quote {
+            color: #999;
+            font-size: 1.1rem; /* 引用也稍微大一点 */
+            font-style: italic;
+            border-left: 3px solid #333;
+            padding-left: 20px;
+            margin: 30px 0;
+        }
+
+        /* --- 底部按钮 --- */
+        .btn-wrapper {
+            margin-top: 80px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeInBtn 2s ease 2s forwards; /* 比文字晚出现 */
+        }
+
+        .back-btn {
+            background: transparent;
+            border: 2px solid #333; /* 边框稍粗一点 */
+            color: #666;
+            padding: 12px 50px;
+            font-family: 'SimSun', serif;
+            /* 修改点1：按钮字体调大 */
+            font-size: 1.2rem; 
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s; /* 悬停动画加快 */
+            letter-spacing: 5px;
+        }
+
+        .back-btn:hover {
+            border-color: #fff;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        /* 动画定义 */
+        @keyframes emerge {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInBtn {
+            to { opacity: 1; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container" id="main-content">
+        <h1>你选择留下</h1>
+
+        <p>无关勇敢或者放弃，你只感觉到深入骨髓的疲惫。<br>
+        熄灭屏幕，靠在椅背上长舒一口气。</p>
+
+        <p>那个叫李振的人，无论他说的是真是假，</p>
+        <div class="quote">
+            “因为你和曾经的我一样，在这个世上孤身一人。”
+        </div>
+        <p>你不偏爱这样的措辞，像是在接受他的同情，你分明没有要求过。</p>
+
+        <p>你拿起一旁的张果老木雕，摩挲着它被替换掉的真身。<br>
+        如今它不是什么价值连城的古董，而是一个不伦不类的物件儿了。<br>
+        因为它？厄运会找上你？<br>
+        就像找上郑群超那样？</p>
+
+        <p>那等待你的是什么呢？想着，你心中竟然升起一丝难以言说的喜悦。<br>
+        就算继续又如何呢？张景会死吗？你会失去这份工作吗？你的生活还会继续这样重复吗？会遇到另一个郑群超吗？会丢给你其他的烂摊子，就像丢给你这尊木雕一样吗？<br>
+        那倒不如亲眼看看所谓命运长什么样子。</p>
+
+        <p>不远处同事隐约的谈笑声，空调单调的嗡鸣，这些声音逐渐远去。<br>
+        你始终睁着眼睛，直到身后传来一声叹息。</p>
+
+        <div class="btn-wrapper">
+            <button class="back-btn" onclick="turnToVoid()">回头</button>
+        </div>
+    </div>
+
+    <script>
+        // 修改点2：瞬间黑屏逻辑
+        function turnToVoid() {
+            // 获取主要内容容器
+            const container = document.getElementById('main-content');
+            
+            // 直接将内容隐藏。
+            // 由于 body 背景已经是纯黑，隐藏内容后即为瞬间全黑。
+            container.style.display = 'none'; 
+        }
+    </script>
+</body>
+</html>
