@@ -3,280 +3,398 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>古韵今声，融汇东西：恭都国学文化节呈现传统文化当代活力</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>慈善活动 | 朱利安·怀特</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        /* --- 基础设置 (延续主流新闻风格) --- */
+        /* --- 全局设置 (与 profile 保持一致) --- */
+        :root {
+            --primary-text: #2c3e50;
+            --secondary-text: #596e79;
+            --accent-color: #8e6e53; /* 优雅的棕褐色/古铜色 */
+            --bg-color: #fdfbf7; 
+            --section-bg: rgba(255, 255, 255, 0.95); /* 内容区微透明白 */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: "Microsoft YaHei", "SimSun", serif;
-            background-color: #f5f8fa; /* 浅灰蓝背景 */
-            color: #333;
-            margin: 0;
-            padding: 0;
-            line-height: 1.8;
+            font-family: 'Noto Serif SC', "Songti SC", serif;
+            color: var(--primary-text);
+            line-height: 1.9;
             font-size: 16px;
-        }
-        a {
-            text-decoration: none;
-            color: #1769aa;
+            /* 背景同步 profile 页面 */
+            background-image: url('白莲花背景.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
         }
 
-        /* --- 顶部导航/报头模拟 --- */
-        .header-site {
-            background-color: #fff;
-            border-bottom: 4px solid #1769aa; /* 权威蓝色 */
-            padding: 15px 0;
-            margin-bottom: 20px;
-        }
-        .header-content {
-            max-width: 800px;
+        a { text-decoration: none; color: var(--accent-color); transition: opacity 0.3s; }
+        a:hover { opacity: 0.7; }
+
+        /* --- 布局容器 --- */
+        .container {
+            max-width: 1000px;
             margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between; /* Logo 和搜索框两端对齐 */
-        }
-        .logo-wrapper {
-            display: flex;
-            align-items: center;
-        }
-        .site-logo {
-            font-family: 'Roboto', sans-serif;
-            font-size: 24px;
-            font-weight: 700;
-            color: #1769aa;
-            margin-right: 10px;
-        }
-        .site-name {
-            font-size: 18px;
-            color: #666;
-            border-left: 1px solid #ddd;
-            padding-left: 10px;
-        }
-        
-        /* 新增：搜索框样式 */
-        .search-wrapper {
-            display: flex;
-            align-items: center;
-        }
-        .news-search-input {
-            padding: 5px 10px;
-            border: 1px solid #1769aa;
-            border-right: none;
-            height: 32px;
-            font-size: 14px;
-            outline: none;
-            width: 150px;
-            color: #333;
-        }
-        .news-search-btn {
-            height: 32px;
-            padding: 0 15px;
-            background-color: #1769aa;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 14px;
-            transition: background-color 0.3s;
-            font-family: "Microsoft YaHei", sans-serif;
-        }
-        .news-search-btn:hover {
-            background-color: #0f4c7a;
+            padding: 0 40px;
+            background-color: var(--section-bg);
+            box-shadow: 0 0 50px rgba(0,0,0,0.05);
+            min-height: 100vh;
         }
 
-        /* --- 文章主体 --- */
-        .article-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 30px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.05);
-            min-height: 80vh;
+        /* --- 头部 (与 profile 一致) --- */
+        header {
+            padding: 60px 0 40px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
         }
-
-        /* 标题和元数据 */
-        .article-title {
-            font-size: 30px;
+        .name-en {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
             font-weight: 700;
-            line-height: 1.3;
+            letter-spacing: 2px;
             margin-bottom: 10px;
-            color: #000;
+            color: #1a1a1a;
         }
-        .article-meta {
+        .name-cn {
+            font-size: 24px;
+            color: #666;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+        .tagline {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent-color);
+            margin-top: 15px;
+        }
+
+        /* --- 导航 (与 profile 一致) --- */
+        nav {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #eee;
+        }
+        nav a {
+            margin: 0 15px;
             color: #999;
             font-size: 13px;
-            margin-bottom: 25px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
+            letter-spacing: 1px;
         }
-        .meta-source {
-            font-weight: bold;
-            color: #666;
-            margin-right: 15px;
+        nav a.active { color: var(--primary-text); border-bottom: 1px solid var(--primary-text); }
+
+        /* --- 慈善项目通用样式 --- */
+        .charity-section {
+            padding: 40px 0 80px;
         }
 
-        /* 图片样式 */
-        .article-image {
+        .project-card {
+            display: flex;
+            align-items: stretch;
+            margin-bottom: 80px;
+            gap: 40px;
+            border-bottom: 1px dashed #ddd;
+            padding-bottom: 60px;
+        }
+        /* 最后一个不需要边框 */
+        .project-card:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        /* 图片区域 */
+        .project-image {
+            flex: 1;
+            min-width: 350px;
+        }
+        .project-image img {
             width: 100%;
-            height: auto;
-            margin: 25px 0;
-            display: block;
+            height: 100%;
             object-fit: cover;
-            border: 1px solid #ddd;
+            border-radius: 2px;
+            box-shadow: 10px 10px 0px rgba(142, 110, 83, 0.1);
+            transition: transform 0.3s ease;
         }
 
-        /* --- 新增：用于缩小图片的辅助类 --- */
-        .small-pic {
-            width: 50% !important; /* 强制设置宽度为50% */
-            margin-left: auto !important; /* 强制居中 */
-            margin-right: auto !important;
+        /* 文本区域 */
+        .project-text {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        .image-caption {
-            font-size: 12px;
-            color: #666;
-            text-align: center;
-            margin-top: -20px;
+        /* 偶数项反转布局 (图右文左) */
+        .project-card.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .project-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--primary-text);
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .project-title::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-color);
+            margin-top: 10px;
+        }
+
+        /* 标语/引言样式 */
+        .project-quote {
+            font-style: italic;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            font-size: 15px;
+            border-left: 2px solid var(--accent-color);
+            padding-left: 15px;
+            line-height: 1.6;
+        }
+        /* 特殊引言块 (针对莲叶舟) */
+        .personal-quote-block {
+            background-color: #fdfbf7;
+            padding: 20px;
             margin-bottom: 25px;
+            border: 1px solid #eee;
+            font-size: 14px;
+            color: #555;
+            font-style: italic;
         }
 
-        /* 正文段落 */
-        .article-body p {
-            text-indent: 2em;
-            margin-bottom: 1.5em;
+        .project-desc {
+            font-size: 15px;
+            color: #444;
+            margin-bottom: 20px;
             text-align: justify;
         }
 
-        /* 小标题 */
-        .sub-heading {
-            font-size: 20px;
-            font-weight: 700;
-            color: #1769aa;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            border-left: 4px solid #1769aa;
-            padding-left: 10px;
+        .project-activities ul {
+            list-style: none;
+            padding: 0;
+        }
+        .project-activities li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #666;
+        }
+        .project-activities li::before {
+            content: '•';
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .activities-title {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* 底部信息 */
-        .article-footer {
-            margin-top: 40px;
-            color: #999;
-            font-size: 14px;
-            text-align: right;
-            border-top: 1px solid #eee;
-            padding-top: 10px;
-        }
-        
-        /* --- 页码样式 --- */
-        .page-number {
+        /* --- 图片查看器模态框 (Modal) --- */
+        #imageModal {
+            display: none;
             position: fixed;
-            bottom: 20px;
-            right: 30px;
-            color: #8a7f6e; /* 保持档案风格的暗金色，与页面蓝色形成区分 */
-            font-size: 14px; /* 小巧精致 */
-            font-family: 'Georgia', serif;
-            letter-spacing: 2px;
-            z-index: 10000;
-            pointer-events: none;
-            opacity: 0.6; /* 稍微透明 */
+            z-index: 9999;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 800px;
+            max-height: 90vh;
+            object-fit: contain;
+            border: 2px solid #fff;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+        }
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
             font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .close-btn:hover, .close-btn:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* --- 页脚 --- */
+        footer {
+            border-top: 1px solid #eee;
+            padding: 40px 0;
+            text-align: center;
+            font-size: 12px;
+            color: #aaa;
+            letter-spacing: 1px;
         }
 
         /* 响应式 */
-        @media (max-width: 840px) {
-            .article-container {
-                margin: 0;
-                padding: 20px;
-            }
-            .article-title {
-                font-size: 24px;
-            }
-            /* 在小屏幕上让小图稍微大一点，避免太小看不清 */
-            .small-pic {
-                width: 70% !important;
-            }
-            .header-content {
-                flex-direction: column;
-                gap: 10px;
-            }
+        @media (max-width: 800px) {
+            .container { padding: 0 20px; }
+            .project-card, .project-card.reverse { flex-direction: column; }
+            .project-image { min-width: 100%; height: 250px; }
+            .name-en { font-size: 36px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="page-number">23/41</div>
+    <div id="imageModal">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
 
-    <header class="header-site">
-        <div class="header-content">
-            <div class="logo-wrapper">
-                <div class="site-logo">GLOBAL NEWS</div>
-                <div class="site-name">环球要闻</div>
-            </div>
+    <div class="container">
+        <header>
+            <div class="name-en">Julian White</div>
+            <div class="name-cn">朱利安·怀特</div>
+            <div class="tagline">权利、尊严与跨文化理解 | 律师 · 倡议者 · 桥梁建造者</div>
+        </header>
+
+        <nav>
+            <a href="julian_white_profile.html">简介</a>
+            <a href="julian_white_profile.html#cases">经典案例</a>
+            <a href="julian_white_profile.html#news">最新动态</a>
+            <a href="#" class="active">慈善活动</a>
+        </nav>
+
+        <div class="charity-section">
             
-            <div class="search-wrapper">
-                <input type="text" id="newsSearchInput" class="news-search-input" placeholder="Search...">
-                <button id="newsSearchBtn" class="news-search-btn">搜索</button>
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="卿.jpg" alt="莲叶舟心灵疗愈项目" style="cursor: pointer;" onclick="openModal('叁.jpg')" title="点击查看详情">
+                </div>
+                <div class="project-text">
+                    <h2 class="project-title">莲叶舟心灵疗愈项目</h2>
+                    
+                    <div class="personal-quote-block">
+                        “才来到这里时，我遇到了一个天使一般的女孩，她深深治愈了我，我想将这份治愈分享给更多人。我决定在1月9日启动这个项目来纪念这份邂逅。”
+                    </div>
+
+                    <p class="project-desc">
+                        <strong>宗旨：从创伤的淤泥中，生长出重塑自我的力量。</strong><br>
+                        专为经历过重大创伤的女性，提供长期、深度且免费的心理支持与团体疗愈。我们融合西方临床心理学与东方正念哲学，帮助参与者将痛苦转化为内在资源，最终达到“与过去和解，为未来掌舵”的疗愈目标。
+                    </p>
+
+                    <div class="project-activities">
+                        <div class="activities-title">活动形式</div>
+                        <ul>
+                            <li><strong>封闭式疗愈周末：</strong>每季度一次，在环境静谧的场所进行。</li>
+                            <li>包含正念冥想、表达性艺术治疗（绘画、音乐）。</li>
+                            <li>叙事疗法小组与深度共情对话。</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </div>
-    </header>
 
-    <div class="article-container">
+            <div class="project-card reverse">
+                <div class="project-image">
+                    <img src="微光.jpg" alt="微光计划">
+                </div>
+                <div class="project-text">
+                    <h2 class="project-title">微光计划</h2>
+                    
+                    <div class="project-quote">
+                        “赋予一点微光，照亮自立之路。”
+                    </div>
 
-        <h1 class="article-title">古韵今声，融汇东西：恭都国学文化节呈现传统文化当代活力</h1>
+                    <p class="project-desc">
+                        <strong>宗旨：</strong>为贫困地区、都市边缘或逃离暴力的女性提供启动资金、技能培训及商业辅导，帮助她们建立可持续的小微生意，实现经济独立。
+                    </p>
 
-        <div class="article-meta">
-            <span class="meta-source">本报讯</span>
-            <span>2015年10月20日</span>
-        </div>
+                    <div class="project-activities">
+                        <div class="activities-title">活动形式</div>
+                        <ul>
+                            <li>提供无息小额贷款，降低创业门槛。</li>
+                            <li>开设编织、烘焙、基础数码技能等职业技能培训班。</li>
+                            <li>链接本地市场与电商平台，帮助销售产品。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-        <div class="article-body">
-            <p>金秋十月，为期三天的“恭都国学文化节”圆满落幕。本届文化节以“守正创新，美美与共”为主题，不仅集中展示了经典研读、礼仪复原、古乐欣赏等传统项目，更通过一系列创新论坛与跨界对话，展现了国学在当代社会的多元面向与融合活力，吸引了大批学者、艺术家与公众参与。在开幕当天，还看见了曹院长的身影。</p>
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="她的声音.jpg" alt="她的声音工作坊">
+                </div>
+                <div class="project-text">
+                    <h2 class="project-title">“她的声音”数字故事工作坊</h2>
+                    <h3 style="font-size: 16px; color: #666; margin-bottom: 10px; font-weight: normal;">Her Voice Digital Storytelling Workshop</h3>
+                    
+                    <div class="project-quote">
+                        “Reclaim your narrative，重写你的生命故事。”
+                    </div>
 
-            <p>文化节的重头戏之一“国学当代价值高峰论坛”上，知名学者、华夏正脉国学研究院院长钟鼎先生发表了演讲。他提出，国学的生命力在于“活态传承”，其“仁爱”、“中庸”、“天人合一”等核心理念，能为现代人的心灵安顿、家庭伦理乃至生态观念提供深层滋养。</p>
+                    <p class="project-desc">
+                        <strong>宗旨：</strong>帮助女性（尤其是幸存者）通过写作、播客、短视频等数字媒介，学习讲述自己的故事。旨在打破沉默，对抗污名化，并建立支持性的线上社群。
+                    </p>
 
-            <p>论坛的跨界对话环节尤为引人注目。国际知名人权律师、艺术赞助人朱利安·怀特女士分享了她的观察。“在中国古典哲学中，我看到了与普世人权精神相通的深刻关怀——对个体修养的重视、对和谐秩序的追求、对不同声音‘和而不同’的包容，”怀特表示，“这种从自身修养推及社会关怀的路径，为全球对话提供了宝贵视角。”</p>
+                    <div class="project-activities">
+                        <div class="activities-title">活动形式</div>
+                        <ul>
+                            <li>举办线上/线下媒体技能与叙事工作坊。</li>
+                            <li>运营一个安全的匿名故事分享平台。</li>
+                            <li>与当地媒体合作，推送优秀作品，放大女性声音。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-            <p>传统文化节期间，“古韵新绎”音乐会成为另一亮点。作曲家韩响带领团队，演绎了数首他以《诗经》、《楚辞》意象为灵感创作的新编室内乐作品。他将箫、古琴等传统乐器音色置于现代作曲框架之中，试图捕捉古典文本的气韵而非简单复现古调。</p>
-
-            <img src="四人合影.jpg" alt="嘉宾合影" class="article-image">
-            <div class="image-caption">图：钟鼎先生、朱利安·怀特女士、燕筠竹女士与韩响先生（从左至右）在论坛间隙合影</div>
-
-            <p>值得注意的是，本次文化节的顺利举办，得益于多方支持。在论坛间隙，记者拍摄到一张很有意义的合影：钟鼎、朱利安·怀特、韩响与知名文化空间“憩园”的主人燕筠竹女士并肩而立。燕筠竹女士作为本届文化节的重要赞助方之一，一直致力于推动雅致生活美学与传统文化传承的结合。她表示：“‘憩园’的使命便是搭建一座桥梁，连接物的历史与人的当下。支持这样的文化节，正是让经典智慧走出书房，在更广阔的公共空间中‘活’起来。”</p>
-
-            <div class="sub-heading">心理与文化的创新结合</div>
-
-            <p>除了宏观讨论，文化节也关注个体的心灵建设。在“国学与当代心理疗愈”工作坊中，知名心理咨询师吕明博士展示了如何将传统文化与现代减压技术相结合，发展出一套有助于缓解焦虑、提升情绪韧性的本土化心理辅助方法。现场参与者体验了结合书法冥想与呼吸调节的环节，反响积极。</p>
-
-            <img src="吕明心理学.jpg" alt="吕明博士在工作坊" class="article-image small-pic">
-            <div class="image-caption">图：吕明博士在工作坊现场指导学员</div>
-
-            <p>吕明博士指出：“文化是我们的‘心理土壤’。从自身文化根源中汲取安顿身心的资源，往往更具亲和力与持久性。”</p>
-
-            <p>本届恭都国学文化节通过学术、艺术、实践等多个维度的呈现，生动诠释了传统文化并非凝固的遗产，而是可以不断与时代对话、与世界对话、与个体生命对话的活水之源。它正以一种更开放、更融合的姿态，参与到当代文化的构建与社会精神的塑造之中。</p>
-        </div>
-
-        <div class="article-footer">
-            （2015年10月20日 电）
         </div>
 
     </div>
 
-    <script>
-        const searchInput = document.getElementById('newsSearchInput');
-        const searchBtn = document.getElementById('newsSearchBtn');
+    <footer>
+        &copy; 2015 Julian White Office. All Rights Reserved.<br>
+        London • New York • Hong Kong
+    </footer>
 
-        function performSearch() {
-            const query = searchInput.value.trim();
-            if (query) {
-                // 跳转到 search.html 并携带 keyword 参数
-                window.location.href = `search.html?keyword=${encodeURIComponent(query)}`;
-            }
+    <script>
+        function openModal(imgSrc) {
+            var modal = document.getElementById("imageModal");
+            var modalImg = document.getElementById("modalImg");
+            modal.style.display = "flex"; // 使用flex居中
+            modal.style.justifyContent = "center";
+            modal.style.alignItems = "center";
+            modalImg.src = imgSrc;
         }
 
-        searchBtn.addEventListener('click', performSearch);
-        searchInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') performSearch();
-        });
+        function closeModal() {
+            var modal = document.getElementById("imageModal");
+            modal.style.display = "none";
+        }
+
+        // 点击遮罩层也可以关闭
+        window.onclick = function(event) {
+            var modal = document.getElementById("imageModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
     </script>
 
 </body>
