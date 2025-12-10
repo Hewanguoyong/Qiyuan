@@ -34,10 +34,13 @@
             display: flex;
             align-items: center;
             justify-content: space-between; /* Logo 和搜索框两端对齐 */
+            padding: 0 20px; /* 增加左右内边距，防止贴边 */
+            gap: 20px; /* 【修改点】增加间距，防止Logo和搜索框“打架”互相遮挡 */
         }
         .logo-wrapper {
             display: flex;
             align-items: center;
+            flex-shrink: 0; /* 防止Logo被挤压 */
         }
         .site-logo {
             font-family: 'Roboto', sans-serif;
@@ -51,12 +54,14 @@
             color: #666;
             border-left: 1px solid #ddd;
             padding-left: 10px;
+            white-space: nowrap; /* 防止文字换行 */
         }
 
         /* 新增：搜索框样式 */
         .search-wrapper {
             display: flex;
             align-items: center;
+            flex-shrink: 0; /* 防止搜索框被挤压 */
         }
         .news-search-input {
             padding: 5px 10px;
@@ -171,7 +176,15 @@
             }
             .header-content {
                 flex-direction: column;
-                gap: 10px;
+                gap: 15px; /* 增加手机端垂直间距 */
+                align-items: flex-start; /* 手机端左对齐看起来更整齐 */
+            }
+            .search-wrapper {
+                width: 100%; /* 手机端搜索框占满宽度 */
+            }
+            .news-search-input {
+                flex-grow: 1; /* 输入框自动伸缩 */
+                width: auto;
             }
         }
     </style>
@@ -228,8 +241,8 @@
         function performSearch() {
             const query = searchInput.value.trim();
             if (query) {
-                // 跳转到 search.html 并携带 keyword 参数
-                window.location.href = `search.html?keyword=${encodeURIComponent(query)}`;
+                // 修改为 search_2.html?q=关键词
+                window.location.href = `search_2.html?q=${encodeURIComponent(query)}`;
             }
         }
 
