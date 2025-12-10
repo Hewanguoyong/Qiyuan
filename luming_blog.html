@@ -62,6 +62,50 @@
             border-bottom: 2px solid #2d8cf0;
         }
 
+        /* --- 新增：搜索栏样式 --- */
+        .nav-right {
+            display: flex;
+            align-items: center;
+        }
+        .search-box {
+            display: flex;
+            align-items: center;
+            background-color: #f4f5f7; /* 与页面背景同色，制造凹陷感 */
+            border-radius: 20px; /* 圆润的形状 */
+            padding: 5px 15px;
+            border: 1px solid transparent; /* 预留边框位置 */
+            transition: all 0.3s ease;
+        }
+        .search-box:focus-within {
+            background-color: #fff;
+            border-color: #2d8cf0; /* 聚焦时显示蓝色边框 */
+            box-shadow: 0 0 0 2px rgba(45, 140, 240, 0.1);
+        }
+        .search-input {
+            border: none;
+            background: transparent;
+            outline: none;
+            font-size: 14px;
+            color: #333;
+            width: 160px;
+        }
+        .search-input::placeholder {
+            color: #bbb;
+        }
+        .search-btn {
+            border: none;
+            background: transparent;
+            color: #999;
+            cursor: pointer;
+            padding: 0;
+            margin-left: 8px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .search-btn:hover {
+            color: #2d8cf0;
+        }
+
         /* --- 主布局 --- */
         .container {
             max-width: 1000px;
@@ -222,9 +266,11 @@
             .container { flex-direction: column; }
             .sidebar { width: 100%; }
             .blog-post { padding: 20px; }
-            .navbar { padding: 0 20px; }
-            .nav-logo { margin-right: 20px; }
-            .nav-menu a { margin-right: 15px; padding: 0 8px; }
+            .navbar { padding: 0 10px; }
+            .nav-logo { margin-right: 15px; font-size: 18px; }
+            .nav-menu a { margin-right: 5px; padding: 0 5px; font-size: 14px; }
+            .search-input { width: 100px; font-size: 12px; } /* 缩小搜索框以适应手机 */
+            .search-box { padding: 5px 10px; }
         }
     </style>
 </head>
@@ -240,7 +286,12 @@
                 <a href="#">联系我们</a>
             </div>
         </div>
+        
         <div class="nav-right">
+            <div class="search-box">
+                <input type="text" class="search-input" id="blogSearchInput" placeholder="搜索文章...">
+                <button class="search-btn" id="blogSearchBtn"><i class="fas fa-search"></i></button>
+            </div>
         </div>
     </nav>
 
@@ -301,7 +352,26 @@
     </footer>
 
     <script>
-        // 脚本保持为空，确保粉丝数字固定在 HTML 中设置的值（191,357）
+        const searchInput = document.getElementById('blogSearchInput');
+        const searchBtn = document.getElementById('blogSearchBtn');
+
+        function performSearch() {
+            const query = searchInput.value.trim();
+            if (query) {
+                // 核心点：这里是 search_2.html?q=关键词
+                window.location.href = `search_2.html?q=${encodeURIComponent(query)}`;
+            }
+        }
+
+        if(searchBtn) {
+            searchBtn.addEventListener('click', performSearch);
+        }
+        
+        if(searchInput) {
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') performSearch();
+            });
+        }
     </script>
 
 </body>
