@@ -34,10 +34,14 @@
             display: flex;
             align-items: center;
             justify-content: space-between; /* Logo 和搜索框两端对齐 */
+            /* 【优化】增加间距和内边距，防止遮挡 */
+            padding: 0 20px; 
+            gap: 20px;
         }
         .logo-wrapper {
             display: flex;
             align-items: center;
+            flex-shrink: 0; /* 防止 Logo 被压缩 */
         }
         .site-logo {
             font-family: 'Roboto', sans-serif;
@@ -51,12 +55,14 @@
             color: #666;
             border-left: 1px solid #ddd;
             padding-left: 10px;
+            white-space: nowrap;
         }
         
         /* 新增：搜索框样式 */
         .search-wrapper {
             display: flex;
             align-items: center;
+            flex-shrink: 0; /* 防止搜索框被压缩 */
         }
         .news-search-input {
             padding: 5px 10px;
@@ -196,7 +202,15 @@
             }
             .header-content {
                 flex-direction: column;
-                gap: 10px;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            .search-wrapper {
+                width: 100%;
+            }
+            .news-search-input {
+                flex-grow: 1;
+                width: auto;
             }
         }
     </style>
@@ -233,7 +247,7 @@
 
             <p>文化节的重头戏之一“国学当代价值高峰论坛”上，知名学者、华夏正脉国学研究院院长钟鼎先生发表了演讲。他提出，国学的生命力在于“活态传承”，其“仁爱”、“中庸”、“天人合一”等核心理念，能为现代人的心灵安顿、家庭伦理乃至生态观念提供深层滋养。</p>
 
-            <p>论坛的跨界对话环节尤为引人注目。国际知名人权律师、艺术赞助人朱利安·怀特女士分享了她的观察。“在中国古典哲学中，我看到了与普世人权精神相通的深刻关怀——对个体修养的重视、对和谐秩序的追求、对不同声音‘和而不同’的包容，”怀特表示，“这种从自身修养推及社会关怀的路径，为全球对话提供了宝贵视角。”</p>
+            <p>论坛的跨界对话环节尤为引人注目。国际知名人权律师、艺术赞助人朱利安·怀特女士分享了她的观察。“在中国古典哲学中，我看到了与普世人权精神相通的深刻关怀——对个体修养的重视、对和谐秩序的追求、对不同声音‘和而不同’的包容，”怀特表示，“这种从自身修养推及社会关怀的路径，为全球对话提供了宝贵视角。</p>
 
             <p>传统文化节期间，“古韵新绎”音乐会成为另一亮点。作曲家韩响带领团队，演绎了数首他以《诗经》、《楚辞》意象为灵感创作的新编室内乐作品。他将箫、古琴等传统乐器音色置于现代作曲框架之中，试图捕捉古典文本的气韵而非简单复现古调。</p>
 
@@ -267,8 +281,8 @@
         function performSearch() {
             const query = searchInput.value.trim();
             if (query) {
-                // 跳转到 search.html 并携带 keyword 参数
-                window.location.href = `search.html?keyword=${encodeURIComponent(query)}`;
+                // 使用 q 参数跳转
+                window.location.href = `search_2.html?q=${encodeURIComponent(query)}`;
             }
         }
 
