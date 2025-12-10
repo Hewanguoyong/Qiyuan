@@ -198,7 +198,7 @@
 
     <div class="wiki-nav">
         <div class="wiki-logo">BAIKE <span style="font-size:14px; font-weight:normal; color:#666;">百科</span></div>
-        <input type="text" class="search-bar" id="wikiSearchInput" placeholder="张景" value="张景">
+        <input type="text" class="search-bar" id="wikiSearchInput" placeholder="张景">
         <div style="margin-left: auto; color: #666; cursor: pointer;"><i class="fas fa-user"></i> 登录</div>
     </div>
 
@@ -284,14 +284,17 @@
     <script>
         const searchInput = document.getElementById('wikiSearchInput');
         
-        searchInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                const query = this.value.trim();
-                if (query) {
-                    window.location.href = `search.html?keyword=${encodeURIComponent(query)}`;
+        if(searchInput){
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const query = this.value.trim();
+                    if (query) {
+                        // 跳转至 search_2.html 并使用 q 参数
+                        window.location.href = `search_2.html?q=${encodeURIComponent(query)}`;
+                    }
                 }
-            }
-        });
+            });
+        }
     </script>
 
 </body>
