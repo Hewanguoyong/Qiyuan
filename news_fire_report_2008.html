@@ -34,6 +34,14 @@
             margin: 0 auto;
             display: flex;
             align-items: center;
+            /* 修改：两端对齐，分开Logo和搜索栏 */
+            justify-content: space-between; 
+            padding: 0 20px; /* 增加内边距防止贴边 */
+        }
+        /* 新增：Logo包裹层，保证Logo和名称在一起 */
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
         }
         .site-logo {
             font-family: 'Roboto', sans-serif;
@@ -47,6 +55,42 @@
             color: #666;
             border-left: 1px solid #ddd;
             padding-left: 10px;
+            white-space: nowrap;
+        }
+
+        /* --- 新增：搜索栏样式 --- */
+        .search-box {
+            display: flex;
+            align-items: center;
+        }
+        .news-search-input {
+            padding: 5px 10px;
+            border: 1px solid #1769aa;
+            border-right: none; /* 与按钮连接 */
+            height: 32px;
+            font-size: 14px;
+            outline: none;
+            width: 160px;
+            color: #333;
+            box-sizing: border-box;
+        }
+        .news-search-input::placeholder {
+            color: #bbb;
+        }
+        .news-search-btn {
+            height: 32px;
+            padding: 0 15px;
+            background-color: #1769aa;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        .news-search-btn:hover {
+            background-color: #0f4c7a;
         }
 
         /* --- 文章主体 --- */
@@ -185,6 +229,19 @@
             .article-title {
                 font-size: 24px;
             }
+            /* 手机端头部调整 */
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            .search-box {
+                width: 100%;
+            }
+            .news-search-input {
+                flex: 1;
+                width: auto;
+            }
         }
     </style>
 </head>
@@ -194,8 +251,15 @@
 
     <header class="header-site">
         <div class="header-content">
-            <div class="site-logo">GLOBAL NEWS</div>
-            <div class="site-name">环球要闻</div>
+            <div class="logo-wrapper">
+                <div class="site-logo">GLOBAL NEWS</div>
+                <div class="site-name">环球要闻</div>
+            </div>
+            
+            <div class="search-box">
+                <input type="text" id="newsSearchInput" class="news-search-input" placeholder="Search...">
+                <button id="newsSearchBtn" class="news-search-btn">搜索</button>
+            </div>
         </div>
     </header>
 
@@ -237,6 +301,29 @@
     </div>
 
     <script>
+        // 1. 搜索功能逻辑 (新增)
+        const searchInput = document.getElementById('newsSearchInput');
+        const searchBtn = document.getElementById('newsSearchBtn');
+
+        function performSearch() {
+            const query = searchInput.value.trim();
+            if (query) {
+                // 跳转到 search_2.html 并使用 q 参数
+                window.location.href = `search_2.html?q=${encodeURIComponent(query)}`;
+            }
+        }
+
+        if(searchBtn) {
+            searchBtn.addEventListener('click', performSearch);
+        }
+        
+        if(searchInput) {
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') performSearch();
+            });
+        }
+
+        // 2. 弹窗逻辑 (保留原有)
         // 10秒后显示弹窗
         setTimeout(function() {
             document.getElementById('techNotification').style.display = 'block';
