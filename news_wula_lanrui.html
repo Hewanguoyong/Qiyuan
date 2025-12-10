@@ -352,7 +352,7 @@
         function performSearch() {
             const query = searchInput.value.trim();
             if (query) {
-                // 跳转至 search_2.html，参数名使用 q
+                // 核心点：这里用 q=xxx，search_2.html 就能自动读取并显示结果
                 window.location.href = `search_2.html?q=${encodeURIComponent(query)}`;
             }
         }
