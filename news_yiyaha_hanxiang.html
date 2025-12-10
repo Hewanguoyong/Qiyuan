@@ -342,7 +342,8 @@
         function performSearch() {
             const query = searchInput.value.trim();
             if (query) {
-                window.location.href = `search.html?keyword=${encodeURIComponent(query)}`;
+                // 修改为跳转到 search_2.html?q=关键词
+                window.location.href = `search_2.html?q=${encodeURIComponent(query)}`;
             }
         }
 
