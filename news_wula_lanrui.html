@@ -346,21 +346,26 @@
     </footer>
 
     <script>
-        // 搜索跳转逻辑
         const searchInput = document.getElementById('wulaSearchInput');
         const searchBtn = document.getElementById('wulaSearchBtn');
 
         function performSearch() {
             const query = searchInput.value.trim();
             if (query) {
-                window.location.href = `search.html?keyword=${encodeURIComponent(query)}`;
+                // 跳转至 search_2.html，参数名使用 q
+                window.location.href = `search_2.html?q=${encodeURIComponent(query)}`;
             }
         }
 
-        searchBtn.addEventListener('click', performSearch);
-        searchInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') performSearch();
-        });
+        if(searchBtn) {
+            searchBtn.addEventListener('click', performSearch);
+        }
+        
+        if(searchInput) {
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') performSearch();
+            });
+        }
     </script>
 
 </body>
