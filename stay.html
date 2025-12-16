@@ -9,9 +9,9 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: 'SimSun', 'Songti SC', serif; /* 宋体，沉浸式阅读 */
-            background-color: #000000;
-            color: #dcdcdc; /* 略微灰暗的白色，不刺眼 */
+            font-family: 'SimSun', 'Songti SC', serif; 
+            background-color: #000000; 
+            color: #dcdcdc; 
             line-height: 2;
             min-height: 100vh;
             display: flex;
@@ -20,24 +20,21 @@
             justify-content: center;
             padding: 40px 20px;
             overflow-x: hidden;
-            /* 修改点1：整体基础字体调大 */
             font-size: 18px; 
         }
 
-        /* --- 内容容器 --- */
+        /* --- 文字内容容器 --- */
         .container {
-            max-width: 650px; /* 稍微调宽一点适应大字体 */
+            max-width: 650px; 
             width: 100%;
             text-align: left;
-            opacity: 0; /* 初始隐藏 */
-            animation: emerge 3s ease forwards; /* 缓慢浮现 */
             position: relative;
-            z-index: 1;
+            z-index: 10;
+            opacity: 0;
+            animation: emerge 3s ease forwards;
         }
 
-        /* 标题/首句 */
         h1 {
-            /* 修改点1：标题字体显著调大 */
             font-size: 2.2rem;
             font-weight: normal;
             color: #fff;
@@ -46,40 +43,34 @@
             letter-spacing: 8px;
         }
 
-        p {
-            margin-bottom: 2.5rem;
-            text-align: justify;
-        }
+        p { margin-bottom: 2.5rem; text-align: justify; }
 
-        /* 引用李振的话，稍微变色 */
         .quote {
             color: #999;
-            font-size: 1.1rem; /* 引用也稍微大一点 */
+            font-size: 1.1rem; 
             font-style: italic;
             border-left: 3px solid #333;
             padding-left: 20px;
             margin: 30px 0;
         }
 
-        /* --- 底部按钮 --- */
         .btn-wrapper {
             margin-top: 80px;
             text-align: center;
             opacity: 0;
-            animation: fadeInBtn 2s ease 2s forwards; /* 比文字晚出现 */
+            animation: fadeInBtn 2s ease 2s forwards; 
         }
 
         .back-btn {
             background: transparent;
-            border: 2px solid #333; /* 边框稍粗一点 */
+            border: 2px solid #333; 
             color: #666;
             padding: 12px 50px;
             font-family: 'SimSun', serif;
-            /* 修改点1：按钮字体调大 */
             font-size: 1.2rem; 
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s; /* 悬停动画加快 */
+            transition: all 0.3s; 
             letter-spacing: 5px;
         }
 
@@ -89,7 +80,49 @@
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
         }
 
-        /* 动画定义 */
+        /* --- 核心：中央金色葫芦水印 --- */
+        .gourd-center {
+            position: fixed;
+            top: 45%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px; 
+            height: 320px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 160'%3E%3Cpath fill='%23a89476' d='M50 10c-15 0-25 12-25 30 0 15 8 25 20 28-18 5-30 20-30 42 0 25 15 45 35 45s35-20 35-45c0-22-12-37-30-42 12-3 20-13 20-28C75 22 65 10 50 10zm0-10c5 0 8 5 5 10h-10c-3-5 0-10 5-10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-size: contain;
+            opacity: 0; 
+            z-index: 0;
+            pointer-events: none;
+            mix-blend-mode: screen;
+            transition: opacity 1s ease;
+        }
+
+        /* --- 心电图容器 --- */
+        .ecg-container {
+            position: fixed;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%; 
+            max-width: 600px;
+            height: 120px;
+            z-index: 5;
+            display: none; 
+            pointer-events: none;
+            mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+        }
+
+        .ecg-line {
+            fill: none;
+            stroke: #a89476; /* 暗金色 */
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            opacity: 1;
+        }
+
         @keyframes emerge {
             0% { opacity: 0; transform: translateY(30px); }
             100% { opacity: 1; transform: translateY(0); }
@@ -101,6 +134,14 @@
     </style>
 </head>
 <body>
+
+    <div id="gourdMark" class="gourd-center"></div>
+
+    <div id="ecgMark" class="ecg-container">
+        <svg viewBox="0 0 800 100" width="100%" height="100%" preserveAspectRatio="none">
+            <path id="dynamicPath" class="ecg-line" d="" />
+        </svg>
+    </div>
 
     <div class="container" id="main-content">
         <h1>你选择留下</h1>
@@ -114,7 +155,7 @@
         </div>
         <p>你不偏爱这样的措辞，像是在接受他的同情，你分明没有要求过。</p>
 
-        <p>你拿起一旁的张果老木雕，摩挲着它被更换掉的替身。<br>
+        <p>你拿起一旁的张果老木雕，摩挲着它被替换掉的真身。<br>
         如今它不是什么价值连城的古董，而是一个不伦不类的物件儿了。<br>
         因为它？厄运会找上你？<br>
         就像找上郑群超那样？</p>
@@ -132,16 +173,68 @@
     </div>
 
     <script>
-        // 修改点2：瞬间黑屏逻辑
+        // --- 修改点：重写第一条路径 ---
+        // 1. 第一遍：全是正常起伏 (重复了5个完整的健康心跳波形)
+        const pathNormal = "M0,50 L30,50 L40,60 L50,10 L65,90 L80,50 L100,50 L180,50 L190,60 L200,10 L215,90 L230,50 L250,50 L330,50 L340,60 L350,10 L365,90 L380,50 L400,50 L480,50 L490,60 L500,10 L515,90 L530,50 L550,50 L630,50 L640,60 L650,10 L665,90 L680,50 L800,50";
+        
+        // 2. 第二遍：先正常，然后逐渐消失拉平 (保持不变)
+        // 逻辑：起始(正常波) -> 中段(微弱波) -> 末段(濒死颤动) -> 终点(长直线)
+        const pathDyingTransition = "M0,50 L30,50 L40,40 L50,60 L60,10 L75,90 L90,40 L100,60 L110,50 L180,50 L190,45 L200,55 L210,50 L280,50 L290,48 L300,52 L310,50 L330,50 L335,49 L340,51 L345,50 L800,50";
+
         function turnToVoid() {
-            // 获取主要内容容器
             const container = document.getElementById('main-content');
+            const gourd = document.getElementById('gourdMark');
+            const ecgContainer = document.getElementById('ecgMark');
+            const pathElement = document.getElementById('dynamicPath');
             
-            // 直接将内容隐藏。
-            // 由于 body 背景已经是纯黑，隐藏内容后即为瞬间全黑。
-            container.style.display = 'none'; 
+            // 瞬间切换场景
+            container.style.display = 'none';
+            document.body.style.transition = 'none'; 
+            document.body.style.backgroundColor = '#050505';
+            
+            // 显示元素
+            gourd.style.opacity = '0.2'; 
+            ecgContainer.style.display = 'block';
+            pathElement.style.opacity = "1";
+
+            // --- 播放序列 ---
+            
+            // 第一遍：正常播放 (调整为4秒，展示更多细节)
+            playStroke(pathNormal, 4, function() {
+                
+                // 间隔 0.8 秒
+                setTimeout(() => {
+                    // 播放第二遍（从正常到消失）
+                    pathElement.style.opacity = "0.8"; 
+                    // 时长设为 5秒
+                    playStroke(pathDyingTransition, 5, null); 
+                }, 800);
+
+            });
+        }
+
+        // 核心动画函数 (保持不变)
+        function playStroke(pathData, durationSeconds, callback) {
+            const pathElement = document.getElementById('dynamicPath');
+            // 1. 关闭过渡，准备重置
+            pathElement.style.transition = 'none';
+            // 2. 设置新路径
+            pathElement.setAttribute('d', pathData);
+            // 3. 获取该路径的精确长度
+            const length = pathElement.getTotalLength();
+            // 4. 将线段设置为隐藏状态
+            pathElement.style.strokeDasharray = length + ' ' + length;
+            pathElement.style.strokeDashoffset = length;
+            // 5. 强制浏览器重绘
+            pathElement.getBoundingClientRect();
+            // 6. 开启过渡动画并开始绘制
+            pathElement.style.transition = `stroke-dashoffset ${durationSeconds}s ease-out`;
+            pathElement.style.strokeDashoffset = '0';
+            // 7. 回调
+            if (callback) {
+                setTimeout(callback, durationSeconds * 1000);
+            }
         }
     </script>
 </body>
-
 </html>
