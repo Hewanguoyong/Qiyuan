@@ -41,6 +41,8 @@
             margin-bottom: 50px;
             text-align: center;
             letter-spacing: 8px;
+            /* 标题也可能有轻微偏移，这里统一加个左内边距修正视觉 */
+            padding-left: 8px; 
         }
 
         p { margin-bottom: 2.5rem; text-align: justify; }
@@ -72,6 +74,7 @@
             cursor: pointer;
             transition: all 0.3s; 
             letter-spacing: 5px;
+            padding-left: 55px; /* 修正按钮文字的字间距偏移 (50+5) */
         }
 
         .back-btn:hover {
@@ -123,6 +126,28 @@
             opacity: 1;
         }
 
+        /* --- THE END 样式 (修复版) --- */
+        .the-end {
+            position: fixed;
+            top: 92%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'SimSun', serif;
+            font-size: 1.2rem;
+            letter-spacing: 8px;
+            /* 关键修复：添加左内边距，抵消右侧的字间距，实现完美视觉居中 */
+            padding-left: 8px; 
+            color: #a89476; 
+            opacity: 0; 
+            z-index: 6;
+            pointer-events: none;
+            transition: opacity 4s ease; 
+        }
+        
+        .the-end.visible {
+            opacity: 1;
+        }
+
         @keyframes emerge {
             0% { opacity: 0; transform: translateY(30px); }
             100% { opacity: 1; transform: translateY(0); }
@@ -142,6 +167,8 @@
             <path id="dynamicPath" class="ecg-line" d="" />
         </svg>
     </div>
+    
+    <div id="endText" class="the-end">THE END</div>
 
     <div class="container" id="main-content">
         <h1>你选择留下</h1>
@@ -173,12 +200,10 @@
     </div>
 
     <script>
-        // --- 修改点：重写第一条路径 ---
-        // 1. 第一遍：全是正常起伏 (重复了5个完整的健康心跳波形)
+        // 1. 第一遍：正常起伏
         const pathNormal = "M0,50 L30,50 L40,60 L50,10 L65,90 L80,50 L100,50 L180,50 L190,60 L200,10 L215,90 L230,50 L250,50 L330,50 L340,60 L350,10 L365,90 L380,50 L400,50 L480,50 L490,60 L500,10 L515,90 L530,50 L550,50 L630,50 L640,60 L650,10 L665,90 L680,50 L800,50";
         
-        // 2. 第二遍：先正常，然后逐渐消失拉平 (保持不变)
-        // 逻辑：起始(正常波) -> 中段(微弱波) -> 末段(濒死颤动) -> 终点(长直线)
+        // 2. 第二遍：逐渐消失拉平
         const pathDyingTransition = "M0,50 L30,50 L40,40 L50,60 L60,10 L75,90 L90,40 L100,60 L110,50 L180,50 L190,45 L200,55 L210,50 L280,50 L290,48 L300,52 L310,50 L330,50 L335,49 L340,51 L345,50 L800,50";
 
         function turnToVoid() {
@@ -199,21 +224,23 @@
 
             // --- 播放序列 ---
             
-            // 第一遍：正常播放 (调整为4秒，展示更多细节)
+            // 第一遍：正常播放 (4秒)
             playStroke(pathNormal, 4, function() {
                 
                 // 间隔 0.8 秒
                 setTimeout(() => {
-                    // 播放第二遍（从正常到消失）
+                    // 播放第二遍（从正常到消失），5秒
                     pathElement.style.opacity = "0.8"; 
-                    // 时长设为 5秒
-                    playStroke(pathDyingTransition, 5, null); 
+                    playStroke(pathDyingTransition, 5, function() {
+                        // 动画结束后，让 "THE END" 浮现
+                        document.getElementById('endText').classList.add('visible');
+                    }); 
                 }, 800);
 
             });
         }
 
-        // 核心动画函数 (保持不变)
+        // 核心动画函数
         function playStroke(pathData, durationSeconds, callback) {
             const pathElement = document.getElementById('dynamicPath');
             // 1. 关闭过渡，准备重置
