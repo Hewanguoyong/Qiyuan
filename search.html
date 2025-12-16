@@ -159,7 +159,7 @@
     <div class="container">
         <nav class="main-nav">
             <div class="search-container">
-                <input type="text" class="search-box" placeholder="输入关键词检索..." id="navSearchInput">
+                <input type="text" class="search-box" placeholder="输入指定关键词..." id="navSearchInput">
                 <div class="search-icon" id="navSearchBtn"><i class="fas fa-search"></i></div>
             </div>
             <div class="nav-links">
@@ -196,108 +196,123 @@
     </div>
 
     <script>
-        // 数据库
+        // 数据库配置：完全根据你的要求设定 strict 关键词
         const allItems = [
-            // --- 蓝锐相关 ---
+            // 搜索“蓝锐” -> 结果 1：百科
             { 
                 title: "蓝锐 个人百科", 
                 type: "人物档案 / Wiki", 
                 desc: "华语流行乐男歌手、演员。蓝锐相关详细生平记录。", 
                 img: "BAIKE.jpg", 
-                link: "lan_rui_wiki.html" 
+                link: "lan_rui_wiki.html",
+                keywords: ["蓝锐"]
             },
+            // 搜索“蓝锐” -> 结果 2：新闻
             { 
                 title: "当红偶像蓝锐寓所内离世", 
                 type: "新闻档案 / News", 
                 desc: "【Wula头条】关于蓝锐离世的突发新闻报道。", 
                 img: "乌拉.jpg", 
-                link: "news_wula_lanrui.html" 
+                link: "news_wula_lanrui.html",
+                keywords: ["蓝锐"]
             },
 
-            // --- 韩响相关 ---
+            // 搜索“韩响” -> 结果 1：百科
             { 
                 title: "韩响 个人百科", 
                 type: "人物档案 / Wiki", 
                 desc: "著名音乐制作人韩响。详细个人资料。", 
                 img: "BAIKE.jpg", 
-                link: "han_xiang_wiki.html" 
+                link: "han_xiang_wiki.html",
+                keywords: ["韩响"]
             },
-            { 
-                title: "穿过云海", 
-                type: "音乐作品 / Music", 
-                /* 删除了韩响关键词，防止被关联搜索 */
-                desc: "知名音乐作品。点击查看作品详情。", 
-                img: "云海.jpg", 
-                link: "song_chuan_guo_yun_hai.html" 
-            },
+            // 搜索“韩响” -> 结果 2：新闻
             { 
                 title: "天才陨落？还是年轻人的风格尝试", 
                 type: "新闻评论 / Review", 
                 desc: "关于韩响近期作品风格突变的深度分析报道。来源：YIYAHA。", 
                 img: "YIYAHA.jpg", 
-                link: "news_yiyaha_hanxiang.html" 
+                link: "news_yiyaha_hanxiang.html",
+                keywords: ["韩响"]
             },
 
-            // --- Julian White ---
+            // 搜索“穿过云海”
+            { 
+                title: "穿过云海", 
+                type: "音乐作品 / Music", 
+                desc: "知名音乐作品。点击查看作品详情。", 
+                img: "云海.jpg", 
+                link: "song_chuan_guo_yun_hai.html",
+                keywords: ["穿过云海"]
+            },
+
+            // 搜索 Julian White 相关
             { 
                 title: "Julian White 个人主页", 
                 type: "个人主页 / Profile", 
                 desc: "朱利安·怀特 (Julian White) / 朱利安 官方个人展示页。", 
                 img: "莲花logo.jpg", 
-                link: "julian_white_profile.html" 
+                link: "julian_white_profile.html",
+                keywords: ["julian_white", "Julian White", "Julian white", "朱利安", "朱利安 怀特"]
             },
 
-            // --- 莲叶舟 ---
+            // 搜索“莲叶舟心灵疗愈项目”
             { 
                 title: "莲叶舟心灵疗愈项目", 
                 type: "公益项目 / Project", 
                 desc: "莲叶舟心灵疗愈项目详细介绍。", 
                 img: "莲花logo.jpg", 
-                link: "help.html" 
+                link: "help.html",
+                keywords: ["莲叶舟心灵疗愈项目"]
             },
 
-            // --- 钟鼎 / 国学研究院 ---
+            // 搜索“钟鼎”或“正脉国学研究院” -> 结果：研究院首页
             { 
                 title: "华夏正脉国学研究院", 
                 type: "机构档案 / Academy", 
                 desc: "华夏正脉国学研究院官方档案。现任院长：钟鼎。", 
                 img: "国学院.jpg", 
-                link: "academy_home.html" 
+                link: "academy_home.html",
+                keywords: ["钟鼎", "正脉国学研究院"]
             },
 
-            // --- 吕明 ---
+            // 搜索“吕明”
             { 
                 title: "吕明 个人博客", 
                 type: "博客文章 / Blog", 
-                /* 删除了朱利安关键词，防止被关联搜索 */
                 desc: "关于当年事件的公开道歉信。", 
                 img: "咿呀哈博客.jpg", 
-                link: "luming_blog.html" 
+                link: "luming_blog.html",
+                keywords: ["吕明"]
             },
 
-            // --- 张景相关 ---
+            // 搜索“张景” -> 结果 1：百科
             { 
                 title: "张景 个人百科", 
                 type: "人物档案 / Wiki", 
                 desc: "瞰世科技创始人张景的个人详细资料。", 
                 img: "BAIKE.jpg", 
-                link: "zhang_jing_wiki.html" 
+                link: "zhang_jing_wiki.html",
+                keywords: ["张景"]
             },
+            // 搜索“张景” -> 结果 2：火灾报告
             { 
                 title: "瞰世科技原研发中心火灾原因锁定：员工办公室电路老化", 
                 type: "调查报告 / Report", 
                 desc: "2008年瞰世科技火灾官方调查结果。相关人员：张景。", 
                 img: "环球要闻.jpg", 
-                link: "news_fire_report_2008.html" 
+                link: "news_fire_report_2008.html",
+                keywords: ["张景"]
             },
 
-            // --- 曹院长 (404彩蛋) ---
+            // 搜索“曹院长” -> 404
             { 
                 title: "《不要点开》", 
                 type: "系统警告 / Warning", 
                 desc: "曹院长相关机密档案。访问受限。", 
-                img: "纯黑.jpg", // 已设置为纯黑.jpg
-                link: "404_warning.html" 
+                img: "纯黑.jpg", 
+                link: "404_warning.html",
+                keywords: ["曹院长"]
             }
         ];
 
@@ -310,13 +325,10 @@
         const navSearchInput = document.getElementById('navSearchInput');
         const navSearchBtn = document.getElementById('navSearchBtn');
 
-        // 执行搜索逻辑
+        // 执行搜索逻辑 (关键词匹配)
         function executeSearch(keyword) {
             if (!keyword || keyword.trim() === "") {
-                initialState.style.display = 'flex';
-                searchHeader.style.display = 'none';
-                resultsGrid.style.display = 'none';
-                noResults.style.display = 'none';
+                resetView();
                 return;
             }
 
@@ -324,13 +336,15 @@
             searchHeader.style.display = 'block';
             displayKeyword.innerText = `“ ${keyword} ”`;
 
-            const lowerKey = keyword.toLowerCase();
-            // 搜索逻辑：匹配标题、描述或类型
-            const filtered = allItems.filter(item => 
-                item.title.toLowerCase().includes(lowerKey) || 
-                item.desc.toLowerCase().includes(lowerKey) ||
-                item.type.toLowerCase().includes(lowerKey)
-            );
+            const lowerKey = keyword.toLowerCase().trim();
+            
+            // 严格匹配逻辑：检查 keywords 数组
+            const filtered = allItems.filter(item => {
+                if (!item.keywords) return false;
+                // 只要 item.keywords 里包含用户输入的词，就算匹配
+                // 使用 includes 允许大小写差异，并处理全字匹配
+                return item.keywords.some(k => k.toLowerCase() === lowerKey);
+            });
 
             if (filtered.length > 0) {
                 renderResults(filtered);
@@ -343,6 +357,13 @@
             }
         }
 
+        function resetView() {
+            initialState.style.display = 'flex';
+            searchHeader.style.display = 'none';
+            resultsGrid.style.display = 'none';
+            noResults.style.display = 'none';
+        }
+
         // 渲染卡片
         function renderResults(items) {
             resultsGrid.innerHTML = "";
@@ -352,7 +373,6 @@
                 card.style.animationDelay = `${index * 0.1}s`;
                 card.onclick = () => window.location.href = item.link;
                 
-                // 图片容错处理
                 const imgHtml = item.img ? `<img src="${item.img}" alt="${item.title}" class="result-img">` : '';
 
                 card.innerHTML = `
@@ -369,9 +389,9 @@
             });
         }
 
-        // 初始化：检查 URL 参数
+        // 初始化：检查 URL 参数 q
         const params = new URLSearchParams(window.location.search);
-        const urlKeyword = params.get('keyword');
+        const urlKeyword = params.get('q'); 
         if (urlKeyword) {
             navSearchInput.value = decodeURIComponent(urlKeyword);
             executeSearch(decodeURIComponent(urlKeyword));
@@ -381,8 +401,7 @@
         function performNewSearch() {
             const val = navSearchInput.value.trim();
             if (val) {
-                // 更新 URL 并执行搜索
-                window.location.href = `?keyword=${encodeURIComponent(val)}`;
+                window.location.href = `?q=${encodeURIComponent(val)}`;
             }
         }
         navSearchBtn.addEventListener('click', performNewSearch);
