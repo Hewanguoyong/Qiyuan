@@ -328,13 +328,11 @@
                 createRandomText();
             }
 
-            // --- 修改部分：点击对应的文字跳转到指定的 diary 页面 ---
             const specialItems = [
                 { text: "燕", url: "diary.html" }, 
                 { text: "箐", url: "diary2.html" }, 
                 { text: "卿", url: "diary3.html" } 
             ];
-            // -----------------------------------------------------
 
             specialItems.forEach((item, index) => {
                 createSpecialLink(item, index, specialItems.length);
@@ -395,15 +393,16 @@
         // 最终解锁逻辑
         function unlockFinalSecret() {
             const finalTrigger = document.getElementById('finalTrigger');
-            // 添加类，改变样式
+            // 添加类，改变样式（保留此行，确保变红和闪烁效果）
             finalTrigger.classList.add('final-unlocked');
             
             // 绑定点击事件
             finalTrigger.addEventListener('click', function(e) {
                 // 确保阻止冒泡
                 e.stopPropagation();
-                // 显式设置 display
-                addressModal.style.display = 'flex';
+                
+                // --- 修改：删除了原本的 addressModal.style.display = 'flex'; ---
+                // 现在点击后不会发生任何事情，但文字依然保持红色闪烁
             });
         }
 
@@ -423,4 +422,3 @@
     </script>
 </body>
 </html>
-
