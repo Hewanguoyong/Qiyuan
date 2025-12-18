@@ -42,13 +42,13 @@
             position: fixed;
             bottom: 20px;
             right: 30px;
-            color: #8a7f6e; /* 暗金色，融入背景 */
-            font-size: 14px; /* 小巧精致 */
+            color: #8a7f6e;
+            font-size: 14px;
             font-family: 'Georgia', serif;
             letter-spacing: 2px;
             z-index: 10000;
             pointer-events: none;
-            opacity: 0.6; /* 稍微透明 */
+            opacity: 0.6;
         }
 
         /* --- 导航栏 --- */
@@ -57,7 +57,6 @@
         .nav-links { display: flex; }
         .nav-link { color: #a89476; text-decoration: none; margin-left: 3rem; font-size: 0.9rem; letter-spacing: 2px; position: relative; transition: color 0.3s ease; }
         .nav-link:hover { color: #e4dccf; }
-        .nav-link.active { color: #e4dccf; }
         
         /* 搜索框 */
         .search-container { position: relative; width: 220px; }
@@ -65,18 +64,9 @@
         .search-box:focus { outline: none; border-color: #a89476; }
         .search-icon { position: absolute; right: 0.8rem; top: 50%; transform: translateY(-50%); color: #a89476; cursor: pointer; }
 
-        /* --- 展览特定样式 --- */
-
         /* 1. Hero 巨幕区 */
         .exhibition-hero {
-            position: relative;
-            width: 100%;
-            height: 85vh; 
-            margin-top: 2rem;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: relative; width: 100%; height: 85vh; margin-top: 2rem; overflow: hidden; display: flex; align-items: center; justify-content: center;
         }
         .hero-img {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -106,90 +96,48 @@
         .hero-btn:hover { background: #a89476; color: #0a0a0a; }
 
         /* 2. 展览前言区 */
-        .intro-section {
-            padding: 8rem 0; text-align: center; max-width: 800px; margin: 0 auto;
-        }
+        .intro-section { padding: 8rem 0; text-align: center; max-width: 800px; margin: 0 auto; }
         .intro-title { font-size: 2rem; margin-bottom: 2rem; color: #a89476; letter-spacing: 5px; font-weight: normal; }
         .intro-text { font-size: 1.1rem; color: #8a7f6e; line-height: 2.2; text-align: justify; text-align-last: center; }
         .intro-divider { width: 50px; height: 2px; background: #a89476; margin: 3rem auto 0; }
 
         /* 3. 展品网格区 */
         .works-section { padding-bottom: 10rem; }
-        .works-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 4rem;
-        }
+        .works-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4rem; }
         
-        .work-card {
-            display: flex; flex-direction: column; gap: 1.5rem;
-            opacity: 0; transform: translateY(30px); transition: all 0.8s ease;
-        }
+        .work-card { display: flex; flex-direction: column; gap: 1.5rem; opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
         .work-card.visible { opacity: 1; transform: translateY(0); }
 
-        .work-img-box {
-            width: 100%; height: 500px; overflow: hidden; position: relative; border: 1px solid rgba(168, 148, 118, 0.1);
-        }
-        .work-img {
-            width: 100%; height: 100%; object-fit: cover;
-            transition: transform 1s ease, filter 0.5s ease;
-            filter: grayscale(0.3) contrast(1.1);
-        }
+        .work-img-box { width: 100%; height: 500px; overflow: hidden; position: relative; border: 1px solid rgba(168, 148, 118, 0.1); }
+        .work-img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s ease, filter 0.5s ease; filter: grayscale(0.3) contrast(1.1); }
         .work-card:hover .work-img { transform: scale(1.05); filter: grayscale(0) contrast(1); }
         
         .work-info { text-align: left; border-left: 2px solid #a89476; padding-left: 1.5rem; transition: border-color 0.3s; }
         .work-card:hover .work-info { border-left-color: #e4dccf; }
         
-        .work-title {
-            font-size: 1.5rem; color: #e4dccf; margin-bottom: 0.5rem; letter-spacing: 2px;
-            display: flex; align-items: center;
-        }
+        .work-title { font-size: 1.5rem; color: #e4dccf; margin-bottom: 0.5rem; letter-spacing: 2px; display: flex; align-items: center; }
         
-        /* --- 特殊线索样式 --- */
         .special-clue {
-            font-size: 1.4em; /* 修改点：调整为1.4倍大小，适度放大 */
-            color: #e4dccf;
-            cursor: pointer;
-            margin: 0 4px;
-            transition: all 0.4s ease;
-            line-height: 1;
-            vertical-align: middle;
-            text-shadow: 0 0 5px rgba(228, 220, 207, 0.1);
+            font-size: 1.4em; color: #e4dccf; cursor: pointer; margin: 0 4px; transition: all 0.4s ease;
+            line-height: 1; vertical-align: middle; text-shadow: 0 0 5px rgba(228, 220, 207, 0.1);
         }
-        .special-clue:hover {
-            color: #a89476; /* 悬停变金色 */
-            text-shadow: 0 0 20px rgba(168, 148, 118, 0.8);
-            transform: scale(1.15);
-        }
+        .special-clue:hover { color: #a89476; text-shadow: 0 0 20px rgba(168, 148, 118, 0.8); transform: scale(1.15); }
 
         .work-dynasty { font-size: 0.9rem; color: #a89476; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1rem; display: block; }
         .work-desc { font-size: 0.95rem; color: #8a7f6e; line-height: 1.6; max-width: 90%; }
 
-        /* 错落感 */
         .work-card:nth-child(even) { margin-top: 5rem; }
 
-        /* 4. 底部预约 */
-        .cta-section {
-            text-align: center; padding: 6rem 0; border-top: 1px solid rgba(168, 148, 118, 0.2);
-        }
+        .cta-section { text-align: center; padding: 6rem 0; border-top: 1px solid rgba(168, 148, 118, 0.2); }
         .cta-text { font-size: 1.2rem; color: #e4dccf; margin-bottom: 2rem; letter-spacing: 2px; }
 
-        /* --- 隐藏线索弹窗 --- */
         .secret-modal {
-            display: none;
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 10000;
-            opacity: 0; transition: opacity 0.5s ease;
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.9); z-index: 10000; opacity: 0; transition: opacity 0.5s ease;
             align-items: center; justify-content: center;
         }
         .secret-modal.active { display: flex; opacity: 1; }
-        .secret-img {
-            max-width: 90%; max-height: 90vh;
-            box-shadow: 0 0 50px rgba(168, 148, 118, 0.3);
-            border: 1px solid rgba(168, 148, 118, 0.5);
-            animation: zoomIn 0.5s ease;
-        }
+        .secret-img { max-width: 90%; max-height: 90vh; box-shadow: 0 0 50px rgba(168, 148, 118, 0.3); border: 1px solid rgba(168, 148, 118, 0.5); animation: zoomIn 0.5s ease; }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
@@ -209,7 +157,6 @@
 <body>
     <div class="ink-bg"></div>
     <div class="gourd-watermark"></div>
-
     <div class="page-number">3/41</div>
 
     <div class="container">
@@ -248,51 +195,38 @@
 
         <section class="works-section">
             <div class="works-grid">
-                
                 <div class="work-card">
-                    <div class="work-img-box">
-                        <img src="春山泛舟卷.jpg" class="work-img" alt="春山泛舟卷">
-                    </div>
+                    <div class="work-img-box"><img src="春山泛舟卷.jpg" class="work-img" alt="春山泛舟卷"></div>
                     <div class="work-info">
                         <h3 class="work-title">春山泛舟卷</h3>
                         <span class="work-dynasty">北宋 / Northern Song Dynasty</span>
-                        <p class="work-desc">展卷即见盛唐气象，于云蒸霞蔚的万壑松风间，一叶轻舟悠然独行，在咫尺画幅中封存了千年前那片浩渺而静谧的春日江山。</p>
+                        <p class="work-desc">展卷即见盛唐气象，于云蒸霞蔚的万壑松风间，一叶轻舟悠然独行。</p>
                     </div>
                 </div>
-
                 <div class="work-card">
-                    <div class="work-img-box">
-                        <img src="无题仕女图.jpg" class="work-img" alt="无题仕女图">
-                    </div>
+                    <div class="work-img-box"><img src="无题仕女图.jpg" class="work-img" alt="无题仕女图"></div>
                     <div class="work-info">
                         <h3 class="work-title">无题·仕女</h3>
                         <span class="work-dynasty">唐代 / Tang Dynasty</span>
-                        <p class="work-desc">画中女子雍容华贵，衣纹线条圆劲有力，色彩富丽典雅，再现大唐盛世风华。</p>
+                        <p class="work-desc">画中女子雍容华贵，衣纹线条圆劲有力，色彩富丽典雅。</p>
                     </div>
                 </div>
-
                 <div class="work-card">
-                    <div class="work-img-box">
-                        <img src="荆卿.jpg" class="work-img" alt="荆卿">
-                    </div>
+                    <div class="work-img-box"><img src="荆卿.jpg" class="work-img" alt="荆卿"></div>
                     <div class="work-info">
                         <h3 class="work-title">白虎行</h3>
                         <span class="work-dynasty">Tang Dynasty</span>
-                        <p class="work-desc">笔锋似白虎啸谷，墨韵如易水悲歌，于纵横捭阖间重现了荆卿那一去不返的千古孤勇，字字铿锵，尽显苍凉壮烈。</p>
+                        <p class="work-desc">笔锋似白虎啸谷，墨韵如易水悲歌。</p>
                     </div>
                 </div>
-
                 <div class="work-card">
-                    <div class="work-img-box">
-                        <img src="春燕图.jpg" class="work-img" alt="春燕图">
-                    </div>
+                    <div class="work-img-box"><img src="春燕图.jpg" class="work-img" alt="春燕图"></div>
                     <div class="work-info">
                         <h3 class="work-title">春<span class="special-clue" onclick="openSecret()">燕</span>图</h3>
                         <span class="work-dynasty">南宋 / SOUTHERN Song Dynasty</span>
-                        <p class="work-desc">翠柳如烟，玄鸟归堂，笔墨于动静之间剪裁出春日的盎然生机，让那一声声呢喃燕语，仿佛穿越纸背，落入心间。</p>
+                        <p class="work-desc">翠柳如烟，玄鸟归堂，笔墨于动静之间剪裁出春日的盎然生机。</p>
                     </div>
                 </div>
-
             </div>
         </section>
 
@@ -301,7 +235,7 @@
             <a href="appointment.html" class="hero-btn">立即预约</a>
         </section>
 
-        <footer class="footer" style="text-align: center; padding: 2rem 0; color: #5a5244; font-size: 0.85rem; border-top: 1px solid rgba(168,148,118,0.2);">
+        <footer class="footer">
             <p>憩园 · 仅供预约访客 | 地址不载于公共图册</p>
             <p>© 2015 Qiyuan. All Serenity Reserved.</p>
         </footer>
@@ -312,13 +246,12 @@
     </div>
 
     <script>
-        // 搜索跳转
+        // 搜索跳转逻辑 - 关键修改点：统一使用参数 q
         const searchInput = document.getElementById('searchInput');
         const searchBtn = document.getElementById('searchBtn');
         function performRedirect() {
             const query = searchInput.value.trim();
-            // 修改点：跳转到 search.html，并传递 keyword 参数
-            if (query) window.location.href = `search.html?keyword=${encodeURIComponent(query)}`;
+            if (query) window.location.href = `search.html?q=${encodeURIComponent(query)}`;
         }
         searchBtn.addEventListener('click', performRedirect);
         searchInput.addEventListener('keypress', function(e) { if (e.key === 'Enter') performRedirect(); });
@@ -333,17 +266,12 @@
                     }
                 });
             }, { threshold: 0.1 });
-
             cards.forEach(card => observer.observe(card));
         });
 
-        // --- 神秘弹窗逻辑 ---
-        function openSecret() {
-            document.getElementById('secretModal').classList.add('active');
-        }
-        function closeSecret() {
-            document.getElementById('secretModal').classList.remove('active');
-        }
+        // 神秘弹窗逻辑
+        function openSecret() { document.getElementById('secretModal').classList.add('active'); }
+        function closeSecret() { document.getElementById('secretModal').classList.remove('active'); }
     </script>
 </body>
 </html>
