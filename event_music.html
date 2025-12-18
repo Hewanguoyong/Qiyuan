@@ -42,13 +42,13 @@
             position: fixed;
             bottom: 20px;
             right: 30px;
-            color: #8a7f6e; /* 暗金色，融入背景 */
-            font-size: 14px; /* 小巧精致 */
+            color: #8a7f6e;
+            font-size: 14px;
             font-family: 'Georgia', serif;
             letter-spacing: 2px;
             z-index: 10000;
             pointer-events: none;
-            opacity: 0.6; /* 稍微透明 */
+            opacity: 0.6;
         }
 
         /* --- 导航栏 --- */
@@ -63,8 +63,6 @@
         .search-box { width: 100%; padding: 0.5rem 2.5rem 0.5rem 1rem; background-color: rgba(26, 26, 26, 0.8); border: 1px solid rgba(168, 148, 118, 0.4); border-radius: 2px; color: #e4dccf; font-family: 'SimSun', 'STKaiti', serif; font-size: 0.9rem; letter-spacing: 1px; transition: all 0.3s ease; }
         .search-box:focus { outline: none; border-color: #a89476; }
         .search-icon { position: absolute; right: 0.8rem; top: 50%; transform: translateY(-50%); color: #a89476; cursor: pointer; }
-
-        /* --- 活动页特定样式 --- */
 
         /* 1. Hero 巨幕 */
         .event-hero {
@@ -91,96 +89,44 @@
             font-size: 4.5rem; color: #e4dccf; font-weight: normal; margin: 0; letter-spacing: 10px;
             text-shadow: 0 0 30px rgba(0,0,0,0.9);
         }
-        .hero-subtitle {
-            font-family: 'KaiTi', serif; font-size: 1.8rem; color: #a89476; letter-spacing: 5px; margin-top: 1rem;
-        }
+        .hero-subtitle { font-family: 'KaiTi', serif; font-size: 1.8rem; color: #a89476; letter-spacing: 5px; margin-top: 1rem; }
 
         /* 2. 策划人/前言区 */
-        .curator-section {
-            padding: 8rem 0 6rem; text-align: center; max-width: 900px; margin: 0 auto;
-        }
-        .curator-text {
-            font-size: 1.1rem; color: #8a7f6e; line-height: 2.4; text-align: justify; text-align-last: center; margin-bottom: 3rem;
-        }
-        .quote-box {
-            border-left: 3px solid #a89476; padding-left: 2rem; margin: 3rem auto; text-align: left; width: 80%;
-        }
+        .curator-section { padding: 8rem 0 6rem; text-align: center; max-width: 900px; margin: 0 auto; }
+        .curator-text { font-size: 1.1rem; color: #8a7f6e; line-height: 2.4; text-align: justify; text-align-last: center; margin-bottom: 3rem; }
+        .quote-box { border-left: 3px solid #a89476; padding-left: 2rem; margin: 3rem auto; text-align: left; width: 80%; }
         .quote-text { font-size: 1.4rem; color: #e4dccf; font-family: 'STKaiti', serif; font-style: italic; }
         .curator-sign { text-align: right; margin-top: 1rem; color: #a89476; font-size: 1rem; letter-spacing: 2px; }
 
         /* 3. 活动内容网格 */
         .highlight-section { padding-bottom: 10rem; }
-        .highlight-grid {
-            display: grid; grid-template-columns: repeat(2, 1fr); gap: 6rem; align-items: start;
-        }
+        .highlight-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6rem; align-items: start; }
         
-        .highlight-card {
-            display: flex; flex-direction: column; gap: 1.5rem;
-            opacity: 0; transform: translateY(40px); transition: all 1s ease;
-        }
+        .highlight-card { display: flex; flex-direction: column; gap: 1.5rem; opacity: 0; transform: translateY(40px); transition: all 1s ease; }
         .highlight-card.visible { opacity: 1; transform: translateY(0); }
-
-        /* 偶数项下沉 */
         .highlight-card:nth-child(even) { margin-top: 10rem; }
 
-        .img-wrapper {
-            width: 100%; height: 450px; overflow: hidden; position: relative;
-            border: 1px solid rgba(168, 148, 118, 0.2);
-        }
-        .highlight-img {
-            width: 100%; height: 100%; object-fit: cover;
-            transition: transform 1.5s ease, filter 1s ease;
-            filter: grayscale(0.4) contrast(1.1);
-        }
+        .img-wrapper { width: 100%; height: 450px; overflow: hidden; position: relative; border: 1px solid rgba(168, 148, 118, 0.2); }
+        .highlight-img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.5s ease, filter 1s ease; filter: grayscale(0.4) contrast(1.1); }
         .highlight-card:hover .highlight-img { transform: scale(1.1); filter: grayscale(0) contrast(1); }
         
         .highlight-info { padding: 0 1rem; }
         .highlight-title { font-size: 1.8rem; color: #e4dccf; letter-spacing: 3px; margin-bottom: 1rem; border-bottom: 1px solid rgba(168,148,118,0.3); padding-bottom: 0.5rem; display: inline-block;}
         .highlight-desc { font-size: 1rem; color: #8a7f6e; line-height: 1.8; text-align: justify; }
 
-        /* 4. 信息与预约 (修改：电话预约样式) */
-        .info-box {
-            background: linear-gradient(135deg, rgba(168, 148, 118, 0.05), transparent);
-            border: 1px solid rgba(168, 148, 118, 0.2);
-            padding: 4rem; max-width: 800px; margin: 0 auto 8rem; text-align: center;
-        }
-        .info-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 3rem; text-align: left;
-        }
+        /* 4. 信息与预约 */
+        .info-box { background: linear-gradient(135deg, rgba(168, 148, 118, 0.05), transparent); border: 1px solid rgba(168, 148, 118, 0.2); padding: 4rem; max-width: 800px; margin: 0 auto 8rem; text-align: center; }
+        .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 3rem; text-align: left; }
         .info-item h4 { color: #a89476; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.5rem; }
         .info-item p { color: #e4dccf; font-size: 1.1rem; }
         
-        /* 电话预约框样式 (修改：无号码) */
-        .phone-reservation {
-            border: 1px solid #a89476;
-            padding: 2rem;
-            display: inline-block;
-            margin-top: 1rem;
-            background: rgba(10, 10, 10, 0.5);
-            min-width: 300px;
-        }
-        .phone-label {
-            display: block;
-            color: #a89476;
-            font-size: 0.9rem;
-            letter-spacing: 3px;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-        }
-        .phone-number {
-            display: block;
-            color: #e4dccf;
-            font-size: 1.4rem; /* 字体稍微调小一点，因为是文字不是数字 */
-            font-family: 'SimSun', serif;
-            letter-spacing: 2px;
-        }
-        
+        .phone-reservation { border: 1px solid #a89476; padding: 2rem; display: inline-block; margin-top: 1rem; background: rgba(10, 10, 10, 0.5); min-width: 300px; }
+        .phone-label { display: block; color: #a89476; font-size: 0.9rem; letter-spacing: 3px; margin-bottom: 0.5rem; text-transform: uppercase; }
+        .phone-number { display: block; color: #e4dccf; font-size: 1.4rem; font-family: 'SimSun', serif; letter-spacing: 2px; }
         .reserve-note { display: block; margin-top: 1.5rem; color: #5a5244; font-size: 0.9rem; }
 
-        /* 动画 */
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* 响应式 */
         @media (max-width: 900px) {
             .highlight-grid { grid-template-columns: 1fr; gap: 4rem; }
             .highlight-card:nth-child(even) { margin-top: 0; }
@@ -196,7 +142,6 @@
 <body>
     <div class="ink-bg"></div>
     <div class="gourd-watermark"></div>
-
     <div class="page-number">5/41</div>
 
     <div class="container">
@@ -238,33 +183,20 @@
 
         <section class="highlight-section">
             <div class="highlight-grid">
-                
                 <div class="highlight-card">
-                    <div class="img-wrapper">
-                        <img src="箜篌实物.jpg" class="highlight-img" alt="箜篌演奏">
-                    </div>
+                    <div class="img-wrapper"><img src="箜篌实物.jpg" class="highlight-img" alt="箜篌演奏"></div>
                     <div class="highlight-info">
                         <h3 class="highlight-title">声动裂石</h3>
-                        <p class="highlight-desc">
-                            我们将尝试复刻唐朝李凭箜篌表演的盛况。摒弃传统舞台的距离感，以沉浸式的场景布置，让乐音如水银泻地般包裹听众。<br><br>
-                            <strong>特别献演：</strong>憩园主人的爱女将亲自登台献技，以家传技艺演绎盛唐遗韵，致敬那段不可复制的传奇。
-                        </p>
+                        <p class="highlight-desc">我们将尝试复刻唐朝李凭箜篌表演的盛况。<strong>特别献演：</strong>憩园主人的爱女将亲自登台献技，以家传技艺演绎盛唐遗韵。</p>
                     </div>
                 </div>
-
                 <div class="highlight-card">
-                    <div class="img-wrapper">
-                        <img src="憩园 洞箫.jpg" class="highlight-img" alt="古董乐器">
-                    </div>
+                    <div class="img-wrapper"><img src="憩园 洞箫.jpg" class="highlight-img" alt="古董乐器"></div>
                     <div class="highlight-info">
                         <h3 class="highlight-title">器韵千年</h3>
-                        <p class="highlight-desc">
-                            音乐之外，物亦有灵。雅集现场一侧特设唐宋乐器鉴赏区，陈列数件与主题契合的私人珍藏。<br><br>
-                            其中包括一把音色极其清越的<strong>宋代洞箫</strong>，以及散落在历史长河中的古代乐器残件。来宾可于雅集前后近距离凝视，感受器物上凝结的时光。
-                        </p>
+                        <p class="highlight-desc">其中包括一把音色极其清越的<strong>宋代洞箫</strong>，以及散落在历史长河中的古代乐器残件。来宾可于雅集前后近距离凝视。</p>
                     </div>
                 </div>
-
             </div>
         </section>
 
@@ -283,12 +215,10 @@
                     <p>仅设 30 席<br>Private Event</p>
                 </div>
             </div>
-            
             <div class="phone-reservation">
                 <span class="phone-label">仅限会员致电预约 / VIP Reservation</span>
                 <span class="phone-number">请拨打会员专属专线</span>
             </div>
-            
             <span class="reserve-note">* 请于工作日 10:00 - 17:00 致电，需核验会员身份</span>
         </div>
 
@@ -299,12 +229,12 @@
     </div>
 
     <script>
-        // --- 新增：搜索框跳转逻辑 ---
+        // --- 核心修改：搜索跳转逻辑，统一参数 q ---
         const searchInput = document.getElementById('searchInput');
         const searchBtn = document.getElementById('searchBtn');
         function performRedirect() {
             const query = searchInput.value.trim();
-            if (query) window.location.href = `search.html?keyword=${encodeURIComponent(query)}`;
+            if (query) window.location.href = `search.html?q=${encodeURIComponent(query)}`;
         }
         searchBtn.addEventListener('click', performRedirect);
         searchInput.addEventListener('keypress', function(e) { if (e.key === 'Enter') performRedirect(); });
@@ -319,7 +249,6 @@
                     }
                 });
             }, { threshold: 0.1 });
-
             cards.forEach(card => observer.observe(card));
         });
     </script>
