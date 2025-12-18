@@ -364,7 +364,7 @@
                 <a href="#"><i class="fas fa-envelope"></i> 消息</a>
             </div>
             <div class="search-container">
-                <input type="text" class="search-input" id="forumSearchInput" placeholder="搜索帖子...">
+                <input type="text" class="search-input" id="forumSearchInput" placeholder="">
                 <button class="search-btn" id="forumSearchBtn"><i class="fas fa-search"></i></button>
             </div>
         </div>
@@ -484,7 +484,7 @@
         }
 
         function checkPassword() {
-            // 密码提示：真正的他（jiahong）＋谢幕的日子（211）
+            // 密码提示：真正的他（jiahong）＋闭幕的日子（211）
             const input = document.getElementById('passwordInput').value.trim().toLowerCase();
             const correctPassword = "jiahong211";
 
@@ -497,14 +497,15 @@
             }
         }
 
-        // --- 搜索功能逻辑 ---
+        // --- 搜索功能逻辑 (已修改) ---
         const searchInput = document.getElementById('forumSearchInput');
         const searchBtn = document.getElementById('forumSearchBtn');
 
         function performSearch() {
             const query = searchInput.value.trim();
             if (query) {
-                window.location.href = `search.html?keyword=${encodeURIComponent(query)}`;
+                // 修改点：跳转到 search_2.html，使用 q 参数
+                window.location.href = `search_2.html?q=${encodeURIComponent(query)}`;
             }
         }
 
@@ -514,5 +515,4 @@
         });
     </script>
 </body>
-
 </html>
