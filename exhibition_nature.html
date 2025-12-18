@@ -42,13 +42,13 @@
             position: fixed;
             bottom: 20px;
             right: 30px;
-            color: #8a7f6e; /* 暗金色，融入背景 */
-            font-size: 14px; /* 小巧精致 */
+            color: #8a7f6e;
+            font-size: 14px;
             font-family: 'Georgia', serif;
             letter-spacing: 2px;
             z-index: 10000;
             pointer-events: none;
-            opacity: 0.6; /* 稍微透明 */
+            opacity: 0.6;
         }
 
         /* --- 导航栏 --- */
@@ -64,131 +64,60 @@
         .search-box:focus { outline: none; border-color: #a89476; }
         .search-icon { position: absolute; right: 0.8rem; top: 50%; transform: translateY(-50%); color: #a89476; cursor: pointer; }
 
-        /* --- 展览特定样式 --- */
-
         /* 1. Hero 巨幕区 */
         .nature-hero {
-            position: relative;
-            width: 100%;
-            height: 90vh;
-            margin-top: 2rem;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: relative; width: 100%; height: 90vh; margin-top: 2rem; overflow: hidden; display: flex; align-items: center; justify-content: center;
         }
         .hero-img {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover;
-            filter: brightness(0.6) sepia(0.1);
+            object-fit: cover; filter: brightness(0.6) sepia(0.1);
             transform: scale(1.05); transition: transform 12s ease;
         }
         .nature-hero:hover .hero-img { transform: scale(1); }
         
         .hero-content {
-            position: relative; z-index: 2; text-align: center;
-            padding: 0 2rem;
-            animation: fadeInUp 1.5s ease;
+            position: relative; z-index: 2; text-align: center; padding: 0 2rem; animation: fadeInUp 1.5s ease;
         }
         .hero-title {
             font-size: 4.5rem; color: #e4dccf; font-weight: normal; margin-bottom: 0.5rem; letter-spacing: 15px;
-            text-shadow: 0 0 30px rgba(0,0,0,0.9);
-            border-bottom: 1px solid rgba(168, 148, 118, 0.5);
-            display: inline-block;
-            padding-bottom: 1.5rem;
+            text-shadow: 0 0 30px rgba(0,0,0,0.9); border-bottom: 1px solid rgba(168, 148, 118, 0.5);
+            display: inline-block; padding-bottom: 1.5rem;
         }
-        .hero-subtitle {
-            font-family: 'SimSun', serif; font-size: 1.5rem; color: #a89476; letter-spacing: 5px; margin-top: 1.5rem;
-            text-transform: uppercase;
-        }
-        .scroll-hint {
-            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
-            color: #a89476; font-size: 1.5rem; animation: bounce 2s infinite;
-        }
+        .hero-subtitle { font-family: 'SimSun', serif; font-size: 1.5rem; color: #a89476; letter-spacing: 5px; margin-top: 1.5rem; text-transform: uppercase; }
+        .scroll-hint { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); color: #a89476; font-size: 1.5rem; animation: bounce 2s infinite; }
 
         /* 2. 前言区 */
-        .intro-section {
-            padding: 8rem 0; text-align: center; max-width: 800px; margin: 0 auto;
-        }
-        .intro-quote {
-            font-size: 1.4rem; color: #e4dccf; font-style: italic; margin-bottom: 2rem; font-family: 'KaiTi', serif;
-        }
+        .intro-section { padding: 8rem 0; text-align: center; max-width: 800px; margin: 0 auto; }
+        .intro-quote { font-size: 1.4rem; color: #e4dccf; font-style: italic; margin-bottom: 2rem; font-family: 'KaiTi', serif; }
         .intro-text { font-size: 1.05rem; color: #8a7f6e; line-height: 2.4; text-align: justify; text-align-last: center; }
 
         /* 3. 错落网格区 */
         .works-section { padding-bottom: 12rem; }
-        .works-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 双列 */
-            gap: 6rem; /* 加大间距 */
-            align-items: start;
-        }
+        .works-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6rem; align-items: start; }
         
-        .work-card {
-            display: flex; flex-direction: column; gap: 1rem;
-            opacity: 0; transform: translateY(40px); transition: all 1s ease;
-        }
+        .work-card { display: flex; flex-direction: column; gap: 1rem; opacity: 0; transform: translateY(40px); transition: all 1s ease; }
         .work-card.visible { opacity: 1; transform: translateY(0); }
-
-        /* 偶数项下沉 */
         .work-card:nth-child(even) { margin-top: 8rem; }
 
-        .work-img-wrapper {
-            width: 100%; height: 600px;
-            overflow: hidden; position: relative;
-            border: 1px solid rgba(168, 148, 118, 0.15);
-        }
-        .work-img {
-            width: 100%; height: 100%; object-fit: cover;
-            transition: transform 1.2s ease, filter 0.8s ease;
-            filter: grayscale(0.2) brightness(0.9);
-        }
+        .work-img-wrapper { width: 100%; height: 600px; overflow: hidden; position: relative; border: 1px solid rgba(168, 148, 118, 0.15); }
+        .work-img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s ease, filter 0.8s ease; filter: grayscale(0.2) brightness(0.9); }
         .work-card:hover .work-img { transform: scale(1.08); filter: grayscale(0) brightness(1.05); }
         
-        .work-meta {
-            text-align: left; margin-top: 1rem; padding: 0 1rem;
-        }
-        .work-title {
-            font-size: 1.6rem; color: #e4dccf; letter-spacing: 3px; margin-bottom: 1rem; border-left: 2px solid #a89476; padding-left: 15px;
-            display: flex; align-items: center; /* 确保标题文字对齐 */
-        }
-        
-        .work-desc {
-            font-size: 1rem; color: #8a7f6e; line-height: 1.8; font-family: 'SimSun', serif; text-align: justify;
-        }
+        .work-meta { text-align: left; margin-top: 1rem; padding: 0 1rem; }
+        .work-title { font-size: 1.6rem; color: #e4dccf; letter-spacing: 3px; margin-bottom: 1rem; border-left: 2px solid #a89476; padding-left: 15px; display: flex; align-items: center; }
+        .work-desc { font-size: 1rem; color: #8a7f6e; line-height: 1.8; font-family: 'SimSun', serif; text-align: justify; }
 
-        /* 特殊链接样式 (步生花跳转) */
-        .story-link {
-            color: #e4dccf;
-            text-decoration: underline;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-        .story-link:hover {
-            color: #a89476;
-            text-shadow: 0 0 10px rgba(168,148,118,0.5);
-        }
+        .story-link { color: #e4dccf; text-decoration: underline; font-weight: bold; transition: color 0.3s; }
+        .story-link:hover { color: #a89476; text-shadow: 0 0 10px rgba(168,148,118,0.5); }
 
         /* 4. 底部预约 */
-        .cta-box {
-            text-align: center; padding: 4rem;
-            border: 1px solid rgba(168, 148, 118, 0.3);
-            margin: 0 auto 6rem; max-width: 600px;
-            background: linear-gradient(to bottom, rgba(168, 148, 118, 0.05), transparent);
-        }
-        .cta-btn {
-            display: inline-block; padding: 1rem 4rem; background: #a89476; color: #0a0a0a;
-            text-decoration: none; font-size: 1rem; letter-spacing: 3px; transition: all 0.3s;
-            margin-top: 2rem;
-        }
+        .cta-box { text-align: center; padding: 4rem; border: 1px solid rgba(168, 148, 118, 0.3); margin: 0 auto 6rem; max-width: 600px; background: linear-gradient(to bottom, rgba(168, 148, 118, 0.05), transparent); }
+        .cta-btn { display: inline-block; padding: 1rem 4rem; background: #a89476; color: #0a0a0a; text-decoration: none; font-size: 1rem; letter-spacing: 3px; transition: all 0.3s; margin-top: 2rem; }
         .cta-btn:hover { background: #e4dccf; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
 
-        /* 动画 */
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);} 40% {transform: translateY(-10px) translateX(-50%);} 60% {transform: translateY(-5px) translateX(-50%);} }
-        @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-        /* 响应式 */
         @media (max-width: 900px) {
             .works-grid { grid-template-columns: 1fr; gap: 4rem; }
             .work-card:nth-child(even) { margin-top: 0; }
@@ -204,13 +133,12 @@
 <body>
     <div class="ink-bg"></div>
     <div class="gourd-watermark"></div>
-
     <div class="page-number">4/41</div>
 
     <div class="container">
         <nav class="main-nav">
             <div class="search-container">
-                <input type="text" class="search-box" placeholder="" id="searchInput">
+                <input type="text" class="search-box" placeholder="搜索藏品..." id="searchInput">
                 <div class="search-icon" id="searchBtn"><i class="fas fa-search"></i></div>
             </div>
             <div class="nav-links">
@@ -242,41 +170,29 @@
 
         <section class="works-section">
             <div class="works-grid">
-                
                 <div class="work-card">
-                    <div class="work-img-wrapper">
-                        <img src="头面.jpg" class="work-img" alt="点翠头面">
-                    </div>
+                    <div class="work-img-wrapper"><img src="头面.jpg" class="work-img" alt="点翠头面"></div>
                     <div class="work-meta">
                         <h3 class="work-title">点翠嵌宝蝴蝶花卉纹头面（一套）</h3>
-                        <div class="work-desc">此套头面工艺卓绝，以点翠技法勾勒蝶翼，嵌以珊瑚、珍珠，仿若蝴蝶停驻花间，栩栩如生。据传曾为江南昆曲名伶所有，是其扮演《游园惊梦》中杜丽娘时的私藏爱物。</div>
+                        <div class="work-desc">此套头面工艺卓绝，以点翠技法勾勒蝶翼。据传曾为江南昆曲名伶所有。</div>
                     </div>
                 </div>
-
                 <div class="work-card">
-                    <div class="work-img-wrapper">
-                        <img src="玉锦鲤.jpg" class="work-img" alt="玉锦鲤">
-                    </div>
+                    <div class="work-img-wrapper"><img src="玉锦鲤.jpg" class="work-img" alt="玉锦鲤"></div>
                     <div class="work-meta">
                         <h3 class="work-title">凝脂锦鳞</h3>
-                        <div class="work-desc">以温润如脂的白玉为肌骨，细腻刀工将锦鲤踏浪而起的瞬间凝固，片片锦鳞仿佛仍在波光中呼吸，尽显不染尘埃的灵动与祥瑞。</div>
+                        <div class="work-desc">以温润如脂的白玉为肌骨，细腻刀工将锦鲤踏浪而起的瞬间凝固。</div>
                     </div>
                 </div>
-
                 <div class="work-card">
-                    <div class="work-img-wrapper">
-                        <img src="蛐蛐罐.jpg" class="work-img" alt="蛐蛐罐">
-                    </div>
+                    <div class="work-img-wrapper"><img src="蛐蛐罐.jpg" class="work-img" alt="蛐蛐罐"></div>
                     <div class="work-meta">
                         <h3 class="work-title">吟秋</h3>
-                        <div class="work-desc">紫檀为骨，竹韵为魂，于方寸镂雕间封存了一季清秋的喧闹，那盖顶静伏的鸣虫，似在守望着旧时文人案头那份独有的闲逸与孤清，令观者似能听见百年前的那一声清脆低吟。</div>
+                        <div class="work-desc">紫檀为骨，竹韵为魂，于方寸镂雕间封存了一季清秋的喧闹。</div>
                     </div>
                 </div>
-
                 <div class="work-card">
-                    <div class="work-img-wrapper">
-                        <img src="步生花.jpg" class="work-img" alt="步生花">
-                    </div>
+                    <div class="work-img-wrapper"><img src="步生花.jpg" class="work-img" alt="步生花"></div>
                     <div class="work-meta">
                         <h3 class="work-title">步生花·独白</h3>
                         <div class="work-desc">
@@ -284,8 +200,7 @@
                         </div>
                     </div>
                 </div>
-
-                </div>
+            </div>
         </section>
 
         <div class="cta-box">
@@ -294,20 +209,19 @@
             <a href="appointment.html" class="cta-btn">预约观展</a>
         </div>
 
-        <footer class="footer" style="text-align: center; padding: 2rem 0; color: #5a5244; font-size: 0.85rem; border-top: 1px solid rgba(168,148,118,0.2);">
+        <footer class="footer">
             <p>憩园 · 仅供预约访客 | 地址不载于公共图册</p>
             <p>© 2015 Qiyuan. All Serenity Reserved.</p>
         </footer>
     </div>
 
     <script>
-        // 搜索跳转
+        // 搜索跳转逻辑 - 关键修改点：跳转到 search.html，并传递参数 q
         const searchInput = document.getElementById('searchInput');
         const searchBtn = document.getElementById('searchBtn');
         function performRedirect() {
             const query = searchInput.value.trim();
-            // 修改点：跳转到 search.html，并传递 keyword 参数
-            if (query) window.location.href = `search.html?keyword=${encodeURIComponent(query)}`;
+            if (query) window.location.href = `search.html?q=${encodeURIComponent(query)}`;
         }
         searchBtn.addEventListener('click', performRedirect);
         searchInput.addEventListener('keypress', function(e) { if (e.key === 'Enter') performRedirect(); });
@@ -322,7 +236,6 @@
                     }
                 });
             }, { threshold: 0.1 });
-
             cards.forEach(card => observer.observe(card));
         });
     </script>
