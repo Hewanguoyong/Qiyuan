@@ -50,18 +50,18 @@
             mix-blend-mode: screen;
         }
 
-        /* --- 页码样式 --- */
+        /* 页码样式 */
         .page-number {
             position: fixed;
             bottom: 20px;
             right: 30px;
-            color: #8a7f6e; /* 暗金色，融入背景 */
-            font-size: 14px; /* 小巧精致 */
+            color: #8a7f6e;
+            font-size: 14px;
             font-family: 'Georgia', serif;
             letter-spacing: 2px;
             z-index: 10000;
             pointer-events: none;
-            opacity: 0.6; /* 稍微透明 */
+            opacity: 0.6;
         }
 
         /* 主容器 */
@@ -91,7 +91,7 @@
             position: relative;
             transition: color 0.3s ease;
         }
-        .nav-link:hover { color: #e4dccf; text-decoration: none; }
+        .nav-link:hover { color: #e4dccf; }
         .nav-link.active { color: #e4dccf; }
         .nav-link.active::after {
             content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 1px; background: #a89476;
@@ -172,7 +172,7 @@
         .item-category { font-size: 0.9rem; color: #a89476; letter-spacing: 2px; margin-bottom: 0.5rem; text-transform: uppercase; }
         .item-description { font-size: 0.9rem; color: #8a7f6e; line-height: 1.6; margin-top: 0.8rem; }
         
-        /* 藏品详情模态框 */
+        /* 详情模态框 */
         .modal-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.95); z-index: 1000; opacity: 0; transition: opacity 0.5s ease;
@@ -197,7 +197,7 @@
         .detail-value { font-size: 1rem; color: #e4dccf; letter-spacing: 1px; }
         .modal-description { font-size: 1rem; line-height: 1.8; color: #8a7f6e; margin-top: 2rem; }
         
-        /* 隐藏彩蛋模态框 */
+        /* 彩蛋模态框 */
         .secret-modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.9); z-index: 10000;
@@ -283,8 +283,7 @@
             <button class="category-btn" data-category="jade">玉器与石雕</button>
         </div>
         
-        <div class="collection-grid" id="collectionGrid">
-            </div>
+        <div class="collection-grid" id="collectionGrid"></div>
         
         <footer class="footer">
             <p>憩园 · 仅供预约访客 | 地址不载于公共图册</p>
@@ -295,8 +294,7 @@
     <div class="modal-overlay" id="itemModal">
         <button class="modal-close" id="modalClose">&times;</button>
         <div class="modal-content">
-            <div class="modal-body" id="modalBody">
-                </div>
+            <div class="modal-body" id="modalBody"></div>
         </div>
     </div>
 
@@ -305,118 +303,17 @@
     </div>
 
     <script>
-        // 藏品数据 (已更新全部数据)
         const collectionItems = [
-            { 
-                id: 1, 
-                title: "明代黄花梨圈椅", 
-                category: "woodcarving", 
-                description: "明代黄花梨圈椅，线条流畅优雅，榫卯结构精密。椅圈弧度自然，扶手端头圆润，靠背板微微后倾。", 
-                era: "明代中期", 
-                material: "黄花梨木", 
-                dimensions: "高 98cm × 宽 62cm × 深 48cm", 
-                origin: "江南地区", 
-                image: "明代黄花梨圈椅.jpg" 
-            },
-            { 
-                id: 2, 
-                title: "绮罗遗韵瓶", 
-                category: "ceramics", 
-                description: "白釉凝脂，青花似翠，那连绵不绝的缠枝莲纹仿佛在瓷胎上恣意生长，将一段关于江南烟雨的清雅旧梦，永远封存在了这温润的流光之中。", 
-                era: "清朝", 
-                material: "高岭土", 
-                dimensions: "高 32cm × 腹径 18cm", 
-                origin: "瓷乡镇", 
-                image: "绮罗遗韵瓶.jpg" 
-            },
-            { 
-                id: 3, 
-                title: "《溪山幽居图》", 
-                category: "calligraphy", 
-                description: "此卷属‘小青绿’山水画法，设色以石青、石绿为主，用笔工整细腻，构图兼具高远与深远之势，描绘了崇山峻岭间云气缭绕、村舍俨然的避世幽境，意境清旷雅致。", 
-                era: "明代", 
-                material: "纸本设色", 
-                dimensions: "画心 30cm × 450cm", 
-                origin: "科州", 
-                image: "《溪山幽居图》.jpg" 
-            },
-            { 
-                id: 4, 
-                title: "唐·掐丝镶嵌金孔雀及狩猎纹金饰组", 
-                category: "bronze", 
-                description: "此组金饰集掐丝、炸珠、锤揲等多种金细工技艺于一体，主件金孔雀形制华丽、宝石镶嵌考究，配以人物骑射纹金牌饰及同质地妆具，完整再现了唐代贵族阶层奢华精致的生活风尚。", 
-                era: "唐", 
-                material: "金", 
-                dimensions: "金孔雀摆件/饰件： 高 14.5 cm × 宽 11.2 cm", 
-                origin: "安岳地区", 
-                image: "唐·掐丝镶嵌金孔雀及狩猎纹金饰组.jpg" 
-            },
-            { 
-                id: 5, 
-                title: "白玉镂雕璧", 
-                category: "jade", 
-                description: "此器选用上等白玉琢制，质地温润如脂；外缘阴刻缠枝花卉纹，璧心采用镂空透雕技法，刻画双螭龙蜿蜒盘绕于云气之中，线条如行云流水，刀工精绝，尽显宫廷玉作之风范。", 
-                era: "清代中期", 
-                material: "和田白玉", 
-                dimensions: "直径 6.5cm × 厚 0.8cm", 
-                origin: "和田", 
-                image: "白玉镂雕璧.jpg" 
-            },
-            { 
-                id: 6, 
-                title: "三彩双色釉陶仗马", 
-                category: "ceramics", 
-                description: "此器为盛唐时期典型低温铅釉陶器，马身通体施琥珀黄釉，鞍鞯处流淌绿釉，塑形严谨合度，呈提腿行进状，生动再现了西域良驹的解剖结构与肌肉张力。", 
-                era: "唐代", 
-                material: "陶胎三彩釉", 
-                dimensions: "高 58cm × 长 52cm", 
-                origin: "洛都", 
-                image: "三彩双色釉陶仗马.jpg" 
-            },
-            { 
-                id: 7, 
-                title: "黑釉银兔毫盏", 
-                category: "ceramics", 
-                description: "此盏造型古朴敦厚，胎骨呈铁褐色，通体施黑釉，釉中析出的银白色结晶呈丝缕状垂流，纹理纤细如兔毫，是宋代建窑黑瓷的代表性品种。", 
-                era: "宋代", 
-                material: "建窑黑釉", 
-                dimensions: "高 7cm × 口径 12cm", 
-                origin: "瑾阳", 
-                image: "黑釉银兔毫盏.jpg" 
-            },
-            { 
-                id: 8, 
-                title: "明代紫檀木笔筒", 
-                category: "woodcarving", 
-                description: "明代紫檀木刻山水纹笔筒，木质坚密，色泽深沉。筒身浮雕山水楼阁图案，构图深远，雕工精细。底部有明代工匠款识。", 
-                era: "明代晚期", 
-                material: "紫檀木", 
-                dimensions: "高 15cm × 直径 12cm", 
-                origin: "科州", 
-                image: "明代紫檀木笔筒.jpg" 
-            },
-            { 
-                id: 9, 
-                title: "乾元八瑞", 
-                category: "woodcarving", 
-                description: "清代黄杨木雕八仙过海套系，工艺精湛，神态各异。", 
-                era: "清代乾隆年间", 
-                material: "黄杨木", 
-                dimensions: "高 28cm × 长 42cm", 
-                origin: "广东广州", 
-                image: "张果老木雕.jpg" 
-            },
-            {
-                id: 10,
-                title: "幽箐鸣玉",
-                category: "jade",
-                description: "“<span class='special-clue' onclick='event.stopPropagation(); openSecretTwo()'>箐</span>”意为从竹的林木。此名寓意鸟笼如同一方幽深的竹林，鸟儿在其中鸣叫，声音清越如玉。将山野的灵动封存于案头，引得笼中雀啼婉转，如击金碎玉，久久回响。",
-                era: "宋朝",
-                material: "青玉",
-                dimensions: "通高：52 厘米（含铜钩）<br>笼体高：38 厘米<br>直径：31.5 厘米",
-                origin: "洛都",
-                image: "箐.jpg"
-            }
+            { id: 1, title: "明代黄花梨圈椅", category: "woodcarving", description: "明代黄花梨圈椅，线条流畅优雅，榫卯结构精密。", era: "明代中期", material: "黄花梨木", dimensions: "高 98cm × 宽 62cm × 深 48cm", origin: "江南地区", image: "明代黄花梨圈椅.jpg" },
+            { id: 2, title: "绮罗遗韵瓶", category: "ceramics", description: "白釉凝脂，青花似翠，缠枝莲纹仿佛在瓷胎上恣意生长。", era: "清朝", material: "高岭土", dimensions: "高 32cm × 腹径 18cm", origin: "瓷乡镇", image: "绮罗遗韵瓶.jpg" },
+            { id: 3, title: "《溪山幽居图》", category: "calligraphy", description: "此卷属‘小青绿’山水画法，用笔工整细腻，意境清旷雅致。", era: "明代", material: "纸本设色", dimensions: "画心 30cm × 450cm", origin: "科州", image: "《溪山幽居图》.jpg" },
+            { id: 4, title: "唐·掐丝镶嵌金孔雀饰组", category: "bronze", description: "集掐丝、炸珠、锤揲等多种技艺，再现唐代贵族奢华风尚。", era: "唐", material: "金", dimensions: "高 14.5 cm × 宽 11.2 cm", origin: "安岳地区", image: "唐·掐丝镶嵌金孔雀及狩猎纹金饰组.jpg" },
+            { id: 5, title: "白玉镂雕璧", category: "jade", description: "质地温润，璧心镂空透雕双螭龙，尽显宫廷玉作风范。", era: "清代中期", material: "和田白玉", dimensions: "直径 6.5cm × 厚 0.8cm", origin: "和田", image: "白玉镂雕璧.jpg" },
+            { id: 6, title: "三彩双色釉陶仗马", category: "ceramics", description: "盛唐典型低温铅釉陶器，生动再现西域良驹肌肉张力。", era: "唐代", material: "陶胎三彩釉", dimensions: "高 58cm × 长 52cm", origin: "洛都", image: "三彩双色釉陶仗马.jpg" },
+            { id: 7, title: "黑釉银兔毫盏", category: "ceramics", description: "胎骨铁褐，釉中析出银白结晶，纹理纤细如兔毫。", era: "宋代", material: "建窑黑釉", dimensions: "高 7cm × 口径 12cm", origin: "瑾阳", image: "黑釉银兔毫盏.jpg" },
+            { id: 8, title: "明代紫檀木笔筒", category: "woodcarving", description: "木质坚密，筒身浮雕山水楼阁图案，构图深远。", era: "明代晚期", material: "紫檀木", dimensions: "高 15cm × 直径 12cm", origin: "科州", image: "明代紫檀木笔筒.jpg" },
+            { id: 9, title: "乾元八瑞", category: "woodcarving", description: "清代黄杨木雕八仙过海套系，工艺精湛，神态各异。", era: "清代乾隆年间", material: "黄杨木", dimensions: "高 28cm × 长 42cm", origin: "广东广州", image: "张果老木雕.jpg" },
+            { id: 10, title: "幽箐鸣玉", category: "jade", description: "鸟笼如幽深竹林，鸣叫清越如玉。将灵动封存于案头。", era: "宋朝", material: "青玉", dimensions: "通高：52 厘米", origin: "洛都", image: "箐.jpg" }
         ];
         
         const categoryMap = { 
@@ -427,40 +324,28 @@
             "jade": "玉器与石雕" 
         };
         
-        // 渲染藏品网格
         function renderCollectionGrid(items) {
             const grid = document.getElementById('collectionGrid');
             grid.innerHTML = '';
-            
             items.forEach(item => {
                 const itemElement = document.createElement('div');
                 itemElement.className = 'collection-item';
                 itemElement.dataset.id = item.id;
-                itemElement.dataset.category = item.category;
-                
                 itemElement.innerHTML = `
                     <img src="${item.image}" alt="${item.title}" class="collection-img">
                     <div class="item-info">
                         <div class="item-category">${categoryMap[item.category] || item.category}</div>
                         <h3 class="item-title">${item.title}</h3>
                         <div class="item-description">${item.description.substring(0, 80)}...</div>
-                    </div>
-                `;
-                
+                    </div>`;
                 grid.appendChild(itemElement);
             });
-            
-            // 点击事件
-            document.querySelectorAll('.collection-item').forEach(item => {
-                item.addEventListener('click', function(e) {
-                    // 如果点击的是彩蛋文字，不触发这里的跳转
-                    if (e.target.classList.contains('special-clue')) return;
 
+            document.querySelectorAll('.collection-item').forEach(item => {
+                item.addEventListener('click', function() {
                     const itemId = parseInt(this.dataset.id);
                     const selectedItem = collectionItems.find(i => i.id === itemId);
-                    
                     if (selectedItem) {
-                        // 特殊跳转逻辑：乾元八瑞
                         if (selectedItem.title === "乾元八瑞") {
                             window.location.href = "qianyuan_collection.html";
                         } else {
@@ -471,11 +356,9 @@
             });
         }
         
-        // 打开模态框
         function openItemModal(item) {
             const modal = document.getElementById('itemModal');
             const modalBody = document.getElementById('modalBody');
-            
             modalBody.innerHTML = `
                 <img src="${item.image}" alt="${item.title}" class="modal-image">
                 <div class="modal-info">
@@ -486,11 +369,9 @@
                         <div class="detail-item"><span class="detail-label">材质</span><span class="detail-value">${item.material}</span></div>
                         <div class="detail-item"><span class="detail-label">尺寸</span><span class="detail-value">${item.dimensions}</span></div>
                         <div class="detail-item"><span class="detail-label">来源</span><span class="detail-value">${item.origin}</span></div>
-                        </div>
+                    </div>
                     <div class="modal-description">${item.description}</div>
-                </div>
-            `;
-            
+                </div>`;
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -500,23 +381,15 @@
             document.body.style.overflow = 'auto';
         }
         
-        // 彩蛋弹窗逻辑
-        function openSecretTwo() {
-            document.getElementById('secretModal').classList.add('active');
-        }
-        function closeSecretTwo() {
-            document.getElementById('secretModal').classList.remove('active');
-        }
+        function openSecretTwo() { document.getElementById('secretModal').classList.add('active'); }
+        function closeSecretTwo() { document.getElementById('secretModal').classList.remove('active'); }
 
-        // 分类过滤
         function setupCategoryFilter() {
             const categoryBtns = document.querySelectorAll('.category-btn');
-            
             categoryBtns.forEach(btn => {
                 btn.addEventListener('click', function() {
                     categoryBtns.forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
-                    
                     const category = this.dataset.category;
                     const filteredItems = collectionItems.filter(item => item.category === category);
                     renderCollectionGrid(filteredItems);
@@ -524,56 +397,37 @@
             });
         }
         
-        // 搜索功能 (修改：跳转到 search.html)
+        // --- 核心修改：统一跳转到 search.html?q= ---
         function setupSearch() {
             const searchBtn = document.getElementById('searchBtn');
             const searchInput = document.getElementById('searchInput');
-            
             function performSearchRedirect() {
                 const query = searchInput.value.trim();
                 if (query) {
-                    window.location.href = `search.html?keyword=${encodeURIComponent(query)}`;
+                    window.location.href = `search.html?q=${encodeURIComponent(query)}`;
                 }
             }
-            
             searchBtn.addEventListener('click', performSearchRedirect);
-            searchInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') performSearchRedirect();
-            });
+            searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') performSearchRedirect(); });
         }
         
-        // 初始化
         function initPage() {
-            // 默认渲染所有
             renderCollectionGrid(collectionItems);
-            
             setupCategoryFilter();
             setupSearch();
-            
             document.getElementById('modalClose').addEventListener('click', closeItemModal);
-            document.getElementById('itemModal').addEventListener('click', function(e) {
-                if (e.target === this) closeItemModal();
-            });
+            document.getElementById('itemModal').addEventListener('click', function(e) { if (e.target === this) closeItemModal(); });
 
-            // 接收 URL 参数 (仅处理 category，search 交给 search.html)
             const urlParams = new URLSearchParams(window.location.search);
             const categoryParam = urlParams.get('category');
-            
-            if (categoryParam) {
-                if (categoryParam === 'all') {
-                    renderCollectionGrid(collectionItems);
-                } else {
-                    const categoryBtn = document.querySelector(`.category-btn[data-category="${categoryParam}"]`);
-                    if (categoryBtn) categoryBtn.click();
-                }
+            if (categoryParam && categoryParam !== 'all') {
+                const categoryBtn = document.querySelector(`.category-btn[data-category="${categoryParam}"]`);
+                if (categoryBtn) categoryBtn.click();
             }
 
             document.body.style.opacity = '0';
             document.body.style.transition = 'opacity 0.8s ease';
-            
-            setTimeout(function() {
-                document.body.style.opacity = '1';
-            }, 100);
+            setTimeout(() => { document.body.style.opacity = '1'; }, 100);
         }
         
         document.addEventListener('DOMContentLoaded', initPage);
