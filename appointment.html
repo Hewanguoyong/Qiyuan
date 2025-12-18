@@ -46,13 +46,13 @@
             position: fixed;
             bottom: 20px;
             right: 30px;
-            color: #8a7f6e; /* 暗金色，融入背景 */
-            font-size: 14px; /* 小巧精致 */
+            color: #8a7f6e;
+            font-size: 14px;
             font-family: 'Georgia', serif;
             letter-spacing: 2px;
             z-index: 10000;
             pointer-events: none;
-            opacity: 0.6; /* 稍微透明 */
+            opacity: 0.6;
         }
 
         .container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
@@ -85,13 +85,7 @@
         .info-content { font-size: 1.1rem; color: #e4dccf; line-height: 2; }
         .info-content a { color: #e4dccf; text-decoration: none; border-bottom: 1px solid rgba(228, 220, 207, 0.3); }
         
-        /* 地址样式 */
-        .address-box {
-            margin-top: 1rem;
-            color: #e4dccf;
-            font-family: 'SimSun', serif;
-            line-height: 1.8;
-        }
+        .address-box { margin-top: 1rem; color: #e4dccf; font-family: 'SimSun', serif; line-height: 1.8; }
         .address-title { font-size: 1.2rem; margin-bottom: 0.5rem; color: #e4dccf; }
         .address-en { font-size: 0.9rem; color: #8a7f6e; font-family: 'Georgia', serif; margin-top: 0.2rem; }
 
@@ -249,12 +243,13 @@
             }
         }
 
-        // 搜索逻辑
+        // --- 核心修改：统一跳转参数为 q ---
         const searchInput = document.getElementById('navSearchInput');
         const searchBtn = document.getElementById('navSearchBtn');
         function performRedirect() {
             const query = searchInput.value.trim();
-            if (query) window.location.href = `search.html?keyword=${encodeURIComponent(query)}`;
+            // 修改点：参数名从 keyword 修改为 q，确保 search.html 能立即捕捉并展示结果
+            if (query) window.location.href = `search.html?q=${encodeURIComponent(query)}`;
         }
         searchBtn.addEventListener('click', performRedirect);
         searchInput.addEventListener('keypress', function(e) { if (e.key === 'Enter') performRedirect(); });
