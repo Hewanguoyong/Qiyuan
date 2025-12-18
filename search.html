@@ -196,9 +196,9 @@
     </div>
 
     <script>
-        // 数据库配置：完全根据你的要求设定 strict 关键词
+        // 数据库配置：已根据最新需求更新关键词和跳转
         const allItems = [
-            // 搜索“蓝锐” -> 结果 1：百科
+            // --- 蓝锐相关 ---
             { 
                 title: "蓝锐 个人百科", 
                 type: "人物档案 / Wiki", 
@@ -207,7 +207,6 @@
                 link: "lan_rui_wiki.html",
                 keywords: ["蓝锐"]
             },
-            // 搜索“蓝锐” -> 结果 2：新闻
             { 
                 title: "当红偶像蓝锐寓所内离世", 
                 type: "新闻档案 / News", 
@@ -217,7 +216,7 @@
                 keywords: ["蓝锐"]
             },
 
-            // 搜索“韩响” -> 结果 1：百科
+            // --- 韩响相关 ---
             { 
                 title: "韩响 个人百科", 
                 type: "人物档案 / Wiki", 
@@ -226,7 +225,6 @@
                 link: "han_xiang_wiki.html",
                 keywords: ["韩响"]
             },
-            // 搜索“韩响” -> 结果 2：新闻
             { 
                 title: "天才陨落？还是年轻人的风格尝试", 
                 type: "新闻评论 / Review", 
@@ -236,7 +234,7 @@
                 keywords: ["韩响"]
             },
 
-            // 搜索“穿过云海”
+            // --- 音乐作品 ---
             { 
                 title: "穿过云海", 
                 type: "音乐作品 / Music", 
@@ -246,17 +244,17 @@
                 keywords: ["穿过云海"]
             },
 
-            // 搜索 Julian White 相关
+            // --- Julian White (整合了所有变体关键词) ---
             { 
                 title: "Julian White 个人主页", 
                 type: "个人主页 / Profile", 
                 desc: "朱利安·怀特 (Julian White) / 朱利安 官方个人展示页。", 
                 img: "莲花logo.jpg", 
                 link: "julian_white_profile.html",
-                keywords: ["julian_white", "Julian White", "Julian white", "朱利安", "朱利安 怀特"]
+                keywords: ["julian_white", "Julian White", "Julian white", "朱利安", "朱利安·怀特", "朱利安 怀特"]
             },
 
-            // 搜索“莲叶舟心灵疗愈项目”
+            // --- 莲叶舟项目 ---
             { 
                 title: "莲叶舟心灵疗愈项目", 
                 type: "公益项目 / Project", 
@@ -266,7 +264,7 @@
                 keywords: ["莲叶舟心灵疗愈项目"]
             },
 
-            // 搜索“钟鼎”或“正脉国学研究院” -> 结果：研究院首页
+            // --- 国学研究院 (整合了钟鼎和机构名) ---
             { 
                 title: "华夏正脉国学研究院", 
                 type: "机构档案 / Academy", 
@@ -276,7 +274,7 @@
                 keywords: ["钟鼎", "正脉国学研究院"]
             },
 
-            // 搜索“吕明”
+            // --- 吕明 ---
             { 
                 title: "吕明 个人博客", 
                 type: "博客文章 / Blog", 
@@ -286,7 +284,7 @@
                 keywords: ["吕明"]
             },
 
-            // 搜索“张景” -> 结果 1：百科
+            // --- 张景相关 ---
             { 
                 title: "张景 个人百科", 
                 type: "人物档案 / Wiki", 
@@ -295,7 +293,6 @@
                 link: "zhang_jing_wiki.html",
                 keywords: ["张景"]
             },
-            // 搜索“张景” -> 结果 2：火灾报告
             { 
                 title: "瞰世科技原研发中心火灾原因锁定：员工办公室电路老化", 
                 type: "调查报告 / Report", 
@@ -305,7 +302,7 @@
                 keywords: ["张景"]
             },
 
-            // 搜索“曹院长” -> 404
+            // --- 曹院长 (警告页) ---
             { 
                 title: "《不要点开》", 
                 type: "系统警告 / Warning", 
@@ -342,7 +339,6 @@
             const filtered = allItems.filter(item => {
                 if (!item.keywords) return false;
                 // 只要 item.keywords 里包含用户输入的词，就算匹配
-                // 使用 includes 允许大小写差异，并处理全字匹配
                 return item.keywords.some(k => k.toLowerCase() === lowerKey);
             });
 
