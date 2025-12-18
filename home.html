@@ -50,18 +50,18 @@
             mix-blend-mode: screen;
         }
 
-        /* --- 页码样式 (低调版) --- */
+        /* --- 页码样式 --- */
         .page-number {
             position: fixed;
             bottom: 20px;
             right: 30px;
-            color: #8a7f6e; /* 暗金色，融入背景 */
-            font-size: 14px; /* 小巧精致 */
+            color: #8a7f6e;
+            font-size: 14px;
             font-family: 'Georgia', serif;
             letter-spacing: 2px;
             z-index: 10000;
             pointer-events: none;
-            opacity: 0.6; /* 稍微透明，不抢眼 */
+            opacity: 0.6;
         }
 
         /* 主容器 */
@@ -271,8 +271,8 @@
         function performRedirect() {
             const query = searchInput.value.trim();
             if (query) {
-                // 跳转到 search.html，并使用 keyword 参数
-                window.location.href = `search.html?keyword=${encodeURIComponent(query)}`;
+                // 关键点：统一使用 q 作为参数名，确保 search.html 能直接识别并展示结果
+                window.location.href = `search.html?q=${encodeURIComponent(query)}`;
             }
         }
         searchBtn.addEventListener('click', performRedirect);
