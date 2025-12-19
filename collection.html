@@ -213,12 +213,21 @@
         }
         @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-        /* 特殊交互文字 */
-        .special-clue {
-            font-size: 1.5em; color: #e4dccf; cursor: pointer; margin: 0 2px;
-            transition: all 0.3s ease; line-height: 1; vertical-align: baseline;
+        /* 特殊交互文字 - "箐"字样式 */
+        .special-char {
+            font-size: 1.4em; /* 放大 */
+            color: #d4b483;   /* 金色高亮 */
+            cursor: pointer;  /* 手型光标 */
+            display: inline-block;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 10;      /* 确保在顶层 */
+            font-weight: bold;
         }
-        .special-clue:hover { color: #a89476; text-shadow: 0 0 10px rgba(168, 148, 118, 0.8); }
+        .special-char:hover {
+            text-shadow: 0 0 15px rgba(212, 180, 131, 0.9);
+            transform: scale(1.2) rotate(-5deg); /* 悬停时稍微旋转放大 */
+        }
 
         /* 页脚 */
         .footer {
@@ -331,11 +340,21 @@
                 const itemElement = document.createElement('div');
                 itemElement.className = 'collection-item';
                 itemElement.dataset.id = item.id;
+                
+                // --- 核心修改部分 ---
+                // 如果是 ID 为 10 的藏品，替换标题中的“箐”字
+                let displayTitle = item.title;
+                if (item.id === 10) {
+                    // 使用 span 包裹“箐”字，并添加 onclick 事件
+                    // event.stopPropagation() 非常重要，它阻止点击事件冒泡到父容器（防止打开详情页）
+                    displayTitle = displayTitle.replace('箐', '<span class="special-char" onclick="event.stopPropagation(); openSecretTwo()">箐</span>');
+                }
+
                 itemElement.innerHTML = `
                     <img src="${item.image}" alt="${item.title}" class="collection-img">
                     <div class="item-info">
                         <div class="item-category">${categoryMap[item.category] || item.category}</div>
-                        <h3 class="item-title">${item.title}</h3>
+                        <h3 class="item-title">${displayTitle}</h3>
                         <div class="item-description">${item.description.substring(0, 80)}...</div>
                     </div>`;
                 grid.appendChild(itemElement);
@@ -397,7 +416,6 @@
             });
         }
         
-        // --- 核心修改：统一跳转到 search.html?q= ---
         function setupSearch() {
             const searchBtn = document.getElementById('searchBtn');
             const searchInput = document.getElementById('searchInput');
