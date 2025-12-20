@@ -7,12 +7,12 @@
     <style>
         /* --- 全局设置 --- */
         :root {
-            --theme-orange: #ff6b00;       /* 主题活力橙 */
-            --theme-orange-light: #fff5eb; /* 浅橙色背景用于强调 */
-            --text-dark: #2c3e50;          /* 深色正文 */
-            --text-gray: #546e7a;          /* 辅助灰色文字 */
-            --bg-page: #f7f9fb;            /* 页面背景 */
-            --bg-paper: #ffffff;           /* 内容背景 */
+            --theme-orange: #ff6b00;       
+            --theme-orange-light: #fff5eb; 
+            --text-dark: #2c3e50;          
+            --text-gray: #546e7a;          
+            --bg-page: #f7f9fb;            
+            --bg-paper: #ffffff;           
         }
 
         body {
@@ -27,7 +27,6 @@
             border-top: 4px solid var(--theme-orange);
         }
 
-        /* --- 内容容器 --- */
         .container {
             max-width: 760px;
             width: 100%;
@@ -132,7 +131,7 @@
             color: var(--theme-orange);
         }
 
-        /* --- 浏览记录样式 (已更新支持点击) --- */
+        /* --- 浏览记录样式 --- */
         .history-section {
             margin-top: 50px;
             border-top: 2px dashed #eee;
@@ -164,16 +163,14 @@
             transition: all 0.2s;
         }
         
-        /* 针对可点击链接的样式调整 */
         a.history-link {
             text-decoration: none;
-            color: var(--text-dark); /* 默认深色，不像正文链接那么显眼 */
+            color: var(--text-dark);
             font-weight: 600;
-            background-color: transparent; /* 去掉正文链接的背景色 */
+            background-color: transparent;
             padding: 0;
-            flex-grow: 1; /* 让链接占据剩余空间，方便点击 */
+            flex-grow: 1;
         }
-        /* 鼠标悬停时变色 */
         a.history-link:hover {
             color: var(--theme-orange);
             text-decoration: underline;
@@ -184,23 +181,44 @@
             font-size: 0.75rem;
             color: #999;
             margin-left: 10px;
-            white-space: nowrap; /* 防止时间换行 */
+            white-space: nowrap;
         }
         .empty-msg {
             color: #aaa;
             font-style: italic;
             font-size: 0.9rem;
         }
-        .clear-btn {
-            margin-top: 10px;
-            font-size: 0.8rem;
-            color: #999;
+
+        /* --- 按钮区域样式 --- */
+        .history-controls {
+            display: flex;
+            justify-content: space-between; /* 两端对齐：左边是清除，右边是展开 */
+            align-items: center;
+            margin-top: 15px;
+            padding: 0 5px;
+        }
+
+        .text-btn {
+            font-size: 0.85rem;
             background: none;
             border: none;
             cursor: pointer;
+            padding: 5px 0;
+            transition: color 0.2s;
+        }
+
+        .clear-btn {
+            color: #999;
             text-decoration: underline;
         }
-        .clear-btn:hover { color: var(--theme-orange); }
+        .clear-btn:hover { color: #ff4d4f; /* 清除按钮变红 */ }
+
+        .toggle-btn {
+            color: var(--theme-orange);
+            font-weight: 600;
+            display: none; /* 默认隐藏，有数据才显示 */
+        }
+        .toggle-btn:hover { opacity: 0.8; }
 
     </style>
 </head>
@@ -232,9 +250,16 @@
 
         <div class="history-section">
             <div class="history-title">System Log / 访问足迹</div>
+            
             <ul id="historyList" class="history-list">
             </ul>
-            <button onclick="clearHistory()" class="clear-btn">清除记录</button>
+
+            <div class="history-controls">
+                <button onclick="clearHistory()" class="clear-btn">清除所有记录</button>
+                <button id="toggleBtn" onclick="toggleHistory()" class="text-btn toggle-btn">
+                    展开更多记录 ▼
+                </button>
+            </div>
         </div>
 
     </div>
@@ -243,46 +268,78 @@
         // --- 核心逻辑 ---
 
         const STORAGE_KEY = 'qiyuan_browsing_history';
+        const DISPLAY_LIMIT = 10; // 单页最大显示数量
 
-        // 1. 渲染列表（核心修改处）
-        function renderHistory(historyData) {
+        // 状态变量
+        let allHistoryData = [];
+        let isExpanded = false; // 默认是折叠状态
+
+        // 1. 初始化：读取数据
+        function init() {
+            allHistoryData = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+            renderHistory();
+        }
+
+        // 2. 渲染列表（核心逻辑）
+        function renderHistory() {
             const listEl = document.getElementById('historyList');
+            const toggleBtn = document.getElementById('toggleBtn');
             listEl.innerHTML = ''; 
 
-            if (!historyData || historyData.length === 0) {
+            if (!allHistoryData || allHistoryData.length === 0) {
                 listEl.innerHTML = '<li class="empty-msg">暂无记录...</li>';
+                toggleBtn.style.display = 'none'; // 没数据时不显示展开按钮
                 return;
             }
 
-            // 倒序显示
-            [...historyData].reverse().forEach(item => {
+            // A. 决定显示哪些数据
+            // 先把数据倒序（新的在上面）
+            const reversedData = [...allHistoryData].reverse();
+            
+            // 如果折叠状态，只取前10条；如果是展开状态，取全部
+            const displayData = isExpanded ? reversedData : reversedData.slice(0, DISPLAY_LIMIT);
+
+            // B. 生成 HTML
+            displayData.forEach(item => {
                 const li = document.createElement('li');
                 li.className = 'history-item';
-                
-                // --- 修改开始 ---
-                // 这里把原本的 <span> 改成了 <a href="...">
-                // item.url 来自 localStorage 里存储的完整链接
-                // target="_blank" 表示在新窗口打开，如果你想在当前页跳转，去掉它即可
                 li.innerHTML = `
                     <a href="${item.url}" class="history-link" target="_blank">${item.title}</a>
                     <span class="history-time">${item.time}</span>
                 `;
-                // --- 修改结束 ---
-
                 listEl.appendChild(li);
             });
+
+            // C. 处理“展开/收起”按钮的显示状态
+            if (allHistoryData.length > DISPLAY_LIMIT) {
+                toggleBtn.style.display = 'block'; // 数据超过10条才显示按钮
+                if (isExpanded) {
+                    toggleBtn.innerHTML = '收起记录 ▲';
+                } else {
+                    const hiddenCount = allHistoryData.length - DISPLAY_LIMIT;
+                    toggleBtn.innerHTML = `展开更多记录 (${hiddenCount}) ▼`;
+                }
+            } else {
+                toggleBtn.style.display = 'none'; // 少于10条不需要展开按钮
+            }
         }
 
-        // 2. 初始化：只读取，不写入 (符合你不想记录Index的需求)
-        const currentHistory = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-        renderHistory(currentHistory);
+        // 3. 切换 展开/收起
+        function toggleHistory() {
+            isExpanded = !isExpanded; // 状态取反
+            renderHistory(); // 重新渲染
+        }
 
-
-        // 3. 清除功能
+        // 4. 清除功能
         function clearHistory() {
             localStorage.removeItem(STORAGE_KEY);
-            renderHistory([]); 
+            allHistoryData = [];
+            isExpanded = false;
+            renderHistory(); 
         }
+
+        // 启动
+        init();
 
     </script>
 </body>
