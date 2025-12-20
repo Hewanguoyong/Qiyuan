@@ -9,43 +9,37 @@
         :root {
             --theme-orange: #ff6b00;       /* 主题活力橙 */
             --theme-orange-light: #fff5eb; /* 浅橙色背景用于强调 */
-            --text-dark: #2c3e50;          /* 深色正文，比纯黑更柔和 */
+            --text-dark: #2c3e50;          /* 深色正文 */
             --text-gray: #546e7a;          /* 辅助灰色文字 */
-            --bg-page: #f7f9fb;            /* 页面背景-极淡的灰调 */
-            --bg-paper: #ffffff;           /* 内容背景-纯白 */
+            --bg-page: #f7f9fb;            /* 页面背景 */
+            --bg-paper: #ffffff;           /* 内容背景 */
         }
 
         body {
-            /* 使用现代系统字体栈，阅读体验更好 */
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background-color: var(--bg-page);
             color: var(--text-dark);
-            line-height: 1.9; /* 稍微增加行高，更透气 */
+            line-height: 1.9;
             margin: 0;
             padding: 40px 20px;
             display: flex;
             justify-content: center;
-            /* 顶部加一条橙色细线，增加精致感 */
             border-top: 4px solid var(--theme-orange);
         }
 
-        /* --- 内容容器 (核心改动) --- */
+        /* --- 内容容器 --- */
         .container {
             max-width: 760px;
             width: 100%;
             background-color: var(--bg-paper);
-            /* 增加圆角和柔和的阴影，制造“纸张感”和层次 */
             border-radius: 12px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-            padding: 50px; /* 增加内部留白 */
+            padding: 50px;
             box-sizing: border-box;
         }
 
-        /* 针对移动端的优化 */
         @media (max-width: 600px) {
-            .container {
-                padding: 30px 20px;
-            }
+            .container { padding: 30px 20px; }
         }
 
         h1 {
@@ -53,20 +47,14 @@
             color: var(--text-dark);
             margin-bottom: 45px;
             font-weight: 700;
-            /* 去掉底部边框，改为左侧橙色装饰条 */
-            border-bottom: none;
-            padding-bottom: 0;
             position: relative;
             padding-left: 18px;
         }
 
-        /* 标题左侧的橙色装饰条 */
         h1::before {
             content: '';
             position: absolute;
-            left: 0;
-            top: 5px;
-            bottom: 5px;
+            left: 0; top: 5px; bottom: 5px;
             width: 6px;
             background-color: var(--theme-orange);
             border-radius: 4px;
@@ -76,83 +64,62 @@
             margin-bottom: 28px;
             font-size: 1.08rem;
             text-align: justify;
-            letter-spacing: 0.02em; /* 微调字间距 */
+            letter-spacing: 0.02em;
         }
 
-        /* --- 重点文字优化 --- */
         strong {
             font-weight: bold;
             color: var(--theme-orange);
-            /* 增加淡淡的荧光笔背景效果 */
             background-color: var(--theme-orange-light);
             padding: 2px 6px;
             border-radius: 4px;
             margin: 0 2px;
         }
 
-        /* --- 链接样式优化 --- */
         a {
             color: var(--theme-orange);
-            text-decoration: none; /* 去掉默认下划线 */
+            text-decoration: none;
             cursor: pointer;
             font-weight: 600;
             padding: 2px 6px;
             border-radius: 6px;
             transition: all 0.2s ease;
-            background-color: rgba(255, 107, 0, 0.05); /* 默认微弱背景 */
+            background-color: rgba(255, 107, 0, 0.05);
         }
-        /* 鼠标悬停效果 */
         a:hover {
             color: #fff;
-            background-color: var(--theme-orange); /* 悬停变实色背景 */
+            background-color: var(--theme-orange);
         }
 
-        /* --- 图片样式优化 --- */
         .object-image {
             display: block;
             max-width: 100%;
             width: auto;
-            /* 限制最大高度，防止图片过大 */
             max-height: 450px; 
             margin: 50px auto;
-            /* 去掉旧边框，改为圆角和拟真投影 */
-            border: none;
-            padding: 0;
-            background: none;
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
             transition: transform 0.3s ease;
         }
-        
-        /* 图片轻微悬浮效果 */
-        .object-image:hover {
-             transform: translateY(-5px);
-        }
+        .object-image:hover { transform: translateY(-5px); }
 
-        /* --- 结尾提示框优化 --- */
         .ending-note {
             margin-top: 60px;
             padding: 25px 30px;
-            /* 使用更柔和的背景色和圆角 */
             background-color: var(--theme-orange-light);
-            border-left: none; /* 去掉生硬的左边框 */
             border-radius: 12px;
-            color: #d35400; /*稍微深一点的橙棕色文字，增加质感*/
+            color: #d35400;
             font-size: 1.05rem;
             font-weight: 500;
-            display: flex; /* 使用flex布局对齐图标 */
+            display: flex;
             align-items: flex-start;
         }
-        
-        /* 加一个小图标增加提示感 */
         .ending-note::before {
             content: '📝';
             font-size: 1.4rem;
             margin-right: 15px;
             line-height: 1.2;
         }
-
-        /* 结尾提示框里的链接特殊处理，使其融合 */
         .ending-note a {
             background-color: transparent;
             color: #d35400;
@@ -161,9 +128,72 @@
             padding: 0;
         }
         .ending-note a:hover {
-             background-color: transparent;
-             color: var(--theme-orange);
+            background-color: transparent;
+            color: var(--theme-orange);
         }
+
+        /* --- 新增：浏览记录样式 --- */
+        .history-section {
+            margin-top: 50px;
+            border-top: 2px dashed #eee;
+            padding-top: 30px;
+        }
+        .history-title {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        .history-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-left: 3px solid #ccc;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .history-item.active {
+            border-left-color: var(--theme-orange);
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .history-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+        .history-time {
+            font-size: 0.75rem;
+            color: #999;
+            margin-left: 10px;
+        }
+        .empty-msg {
+            color: #aaa;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+        .clear-btn {
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: #999;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        .clear-btn:hover { color: var(--theme-orange); }
+
     </style>
 </head>
 <body>
@@ -184,7 +214,7 @@
             <a href="work_chat.html" target="_blank">点击查看消息</a>
         </p>
         
-        <img src="张果老赝品.jpg" alt="张果老赝品" class="object-image">
+        <img src="张果老赝品.jpg" alt="张果老木雕" class="object-image">
 
         <div class="ending-note">
             <span>
@@ -192,7 +222,95 @@
             </span>
         </div>
 
+        <div class="history-section">
+            <div class="history-title">System Log / 访问足迹</div>
+            <ul id="historyList" class="history-list">
+                </ul>
+            <button onclick="clearHistory()" class="clear-btn">清除记录</button>
+        </div>
+
     </div>
 
+    <script>
+        // --- 核心逻辑 ---
+
+        // 1. 定义存储的 Key
+        const STORAGE_KEY = 'qiyuan_browsing_history';
+
+        // 2. 获取当前页面信息
+        const currentPage = {
+            title: document.title,
+            url: window.location.href, // 或者用 window.location.pathname 只存相对路径
+            time: new Date().toLocaleTimeString('zh-CN', {hour: '2-digit', minute:'2-digit'})
+        };
+
+        // 3. 记录当前页面（Record）
+        function recordPage() {
+            let history = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+            
+            // 避免重复记录最后一个页面（刷新时不重复添加）
+            if (history.length > 0 && history[history.length - 1].url === currentPage.url) {
+                // 如果是刷新，只更新时间，不新增条目
+                history[history.length - 1].time = currentPage.time; 
+            } else {
+                // 新增条目
+                history.push(currentPage);
+            }
+
+            // 限制记录条数，比如只保留最近 10 条
+            if (history.length > 10) history.shift();
+
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+            return history;
+        }
+
+        // 4. 渲染列表（Render）
+        function renderHistory(historyData) {
+            const listEl = document.getElementById('historyList');
+            listEl.innerHTML = ''; // 清空
+
+            if (!historyData || historyData.length === 0) {
+                listEl.innerHTML = '<li class="empty-msg">暂无记录...</li>';
+                return;
+            }
+
+            // 倒序显示（最近的在最上面）
+            [...historyData].reverse().forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'history-item';
+                
+                // 如果是当前页，加个高亮样式
+                if (item.url === currentPage.url) {
+                    li.classList.add('active');
+                }
+
+                // 创建链接（如果只是为了展示，可以把 href 去掉）
+                // 这里为了安全，只显示标题，不直接做成可点击链接，或者做成点击跳转
+                // 为了避免路径问题，我们尽量只显示名字
+                const linkName = item.title === '序章' ? '当前页面' : item.title;
+                
+                li.innerHTML = `
+                    <span class="history-link">${item.title}</span>
+                    <span class="history-time">${item.time}</span>
+                `;
+                listEl.appendChild(li);
+            });
+        }
+
+        // 5. 清除功能
+        function clearHistory() {
+            localStorage.removeItem(STORAGE_KEY);
+            renderHistory([]); // 重新渲染空状态
+            // 重新记录当前页，以免列表彻底消失
+            recordPage(); 
+            // 刷新页面显示当前
+            window.location.reload();
+        }
+
+        // --- 初始化执行 ---
+        const updatedHistory = recordPage();
+        renderHistory(updatedHistory);
+
+    </script>
 </body>
 </html>
