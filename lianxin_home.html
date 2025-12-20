@@ -392,22 +392,23 @@
         }
     </script>
 <script>
-    // 这是通用记录代码，放在其他页面底部
     (function() {
         const STORAGE_KEY = 'qiyuan_browsing_history';
         const pageInfo = {
-            title: document.title, // 确保那个页面的 <title> 标签写好了名字
+            title: document.title || '未知页面', 
             url: window.location.href,
             time: new Date().toLocaleTimeString('zh-CN', {hour: '2-digit', minute:'2-digit'})
         };
 
         let history = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
         
-        // 简单防重逻辑
+        // 防止瞬间重复刷新
         if (history.length === 0 || history[history.length - 1].url !== pageInfo.url) {
             history.push(pageInfo);
-             // 限制长度
-            if (history.length > 10) history.shift();
+            
+            // 【注意】这里不再限制数量了，有多少存多少
+            // 只要硬盘（localStorage）没满，它就会一直记
+            
             localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
         }
     })();
