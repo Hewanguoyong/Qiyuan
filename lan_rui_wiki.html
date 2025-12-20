@@ -198,7 +198,7 @@
 
     <div class="wiki-nav">
         <div class="wiki-logo">BAIKE <span style="font-size:14px; font-weight:normal; color:#666;">百科</span></div>
-        <input type="text" class="search-bar" id="wikiSearchInput" placeholder="蓝锐" value="蓝锐">
+        <input type="text" class="search-bar" id="wikiSearchInput" placeholder="蓝锐">
         <div style="margin-left: auto; color: #666; cursor: pointer;"><i class="fas fa-user"></i> 登录</div>
     </div>
 
@@ -221,7 +221,7 @@
 
             <p><strong>风格确立与走红 (2012-2014)</strong></p>
             <p>2012年后，经纪团队根据其个人特质，为其打造了模糊性别界限的视觉形象。在当时的主流审美中，蓝锐以一种忧郁、脆弱且精致的气质脱颖而出。</p>
-            <p>2013年，蓝锐发布多首原创单曲，其颈部的复杂花纹纹身成为其最为显著的个人标志，被粉丝称为“荆棘之花”。舞台上，他常以极具故事感和张力的表演风格著称，被媒体评价为“自带破碎感的歌者”。</p>
+            <p>2013年，蓝锐发布多首原创单曲，其颈部右侧的复杂花纹纹身逐渐显露，成为其最为显著的个人标志，被粉丝称为“荆棘之花”。舞台上，他常以极具故事感和张力的表演风格著称，被媒体评价为“自带破碎感的歌者”。</p>
             <p>2014年，首张个人EP《锐·变》正式发行，收录了包括《空茧》、《雾霭》在内的代表作。同年，他涉足影视圈，在一部热门悬疑网剧中饰演重要角色，演技颇受好评，成功跻身当年新生代顶流艺人之列。</p>
 
             <p><strong>离世 (2015)</strong></p>
@@ -323,17 +323,41 @@
 
     <script>
         const searchInput = document.getElementById('wikiSearchInput');
+        
         if(searchInput){
             searchInput.addEventListener('keypress', function(e) {
+                // 当用户按下回车键时触发
                 if (e.key === 'Enter') {
                     const query = this.value.trim();
                     if (query) {
-                        window.location.href = `search.html?keyword=${encodeURIComponent(query)}`;
+                        // 使用 q 参数进行查询
+                        window.location.href = `search_2.html?q=${encodeURIComponent(query)}`;
                     }
                 }
             });
         }
     </script>
-</body>
+<script>
+    (function() {
+        const STORAGE_KEY = 'qiyuan_browsing_history';
+        const pageInfo = {
+            title: document.title || '未知页面', 
+            url: window.location.href,
+            time: new Date().toLocaleTimeString('zh-CN', {hour: '2-digit', minute:'2-digit'})
+        };
 
+        let history = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        
+        // 防止瞬间重复刷新
+        if (history.length === 0 || history[history.length - 1].url !== pageInfo.url) {
+            history.push(pageInfo);
+            
+            // 【注意】这里不再限制数量了，有多少存多少
+            // 只要硬盘（localStorage）没满，它就会一直记
+            
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+        }
+    })();
+</script>
+</body>
 </html>
