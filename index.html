@@ -132,7 +132,7 @@
             color: var(--theme-orange);
         }
 
-        /* --- 新增：浏览记录样式 --- */
+        /* --- 浏览记录样式 (已更新支持点击) --- */
         .history-section {
             margin-top: 50px;
             border-top: 2px dashed #eee;
@@ -163,20 +163,28 @@
             font-size: 0.9rem;
             transition: all 0.2s;
         }
-        .history-item.active {
-            border-left-color: var(--theme-orange);
-            background-color: #fff;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        .history-link {
+        
+        /* 针对可点击链接的样式调整 */
+        a.history-link {
             text-decoration: none;
-            color: var(--text-dark);
+            color: var(--text-dark); /* 默认深色，不像正文链接那么显眼 */
             font-weight: 600;
+            background-color: transparent; /* 去掉正文链接的背景色 */
+            padding: 0;
+            flex-grow: 1; /* 让链接占据剩余空间，方便点击 */
         }
+        /* 鼠标悬停时变色 */
+        a.history-link:hover {
+            color: var(--theme-orange);
+            text-decoration: underline;
+            background-color: transparent;
+        }
+
         .history-time {
             font-size: 0.75rem;
             color: #999;
             margin-left: 10px;
+            white-space: nowrap; /* 防止时间换行 */
         }
         .empty-msg {
             color: #aaa;
@@ -225,7 +233,7 @@
         <div class="history-section">
             <div class="history-title">System Log / 访问足迹</div>
             <ul id="historyList" class="history-list">
-                </ul>
+            </ul>
             <button onclick="clearHistory()" class="clear-btn">清除记录</button>
         </div>
 
@@ -234,82 +242,47 @@
     <script>
         // --- 核心逻辑 ---
 
-        // 1. 定义存储的 Key
         const STORAGE_KEY = 'qiyuan_browsing_history';
 
-        // 2. 获取当前页面信息
-        const currentPage = {
-            title: document.title,
-            url: window.location.href, // 或者用 window.location.pathname 只存相对路径
-            time: new Date().toLocaleTimeString('zh-CN', {hour: '2-digit', minute:'2-digit'})
-        };
-
-        // 3. 记录当前页面（Record）
-        function recordPage() {
-            let history = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-            
-            // 避免重复记录最后一个页面（刷新时不重复添加）
-            if (history.length > 0 && history[history.length - 1].url === currentPage.url) {
-                // 如果是刷新，只更新时间，不新增条目
-                history[history.length - 1].time = currentPage.time; 
-            } else {
-                // 新增条目
-                history.push(currentPage);
-            }
-
-            // 限制记录条数，比如只保留最近 10 条
-            if (history.length > 10) history.shift();
-
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
-            return history;
-        }
-
-        // 4. 渲染列表（Render）
+        // 1. 渲染列表（核心修改处）
         function renderHistory(historyData) {
             const listEl = document.getElementById('historyList');
-            listEl.innerHTML = ''; // 清空
+            listEl.innerHTML = ''; 
 
             if (!historyData || historyData.length === 0) {
                 listEl.innerHTML = '<li class="empty-msg">暂无记录...</li>';
                 return;
             }
 
-            // 倒序显示（最近的在最上面）
+            // 倒序显示
             [...historyData].reverse().forEach(item => {
                 const li = document.createElement('li');
                 li.className = 'history-item';
                 
-                // 如果是当前页，加个高亮样式
-                if (item.url === currentPage.url) {
-                    li.classList.add('active');
-                }
-
-                // 创建链接（如果只是为了展示，可以把 href 去掉）
-                // 这里为了安全，只显示标题，不直接做成可点击链接，或者做成点击跳转
-                // 为了避免路径问题，我们尽量只显示名字
-                const linkName = item.title === '序章' ? '当前页面' : item.title;
-                
+                // --- 修改开始 ---
+                // 这里把原本的 <span> 改成了 <a href="...">
+                // item.url 来自 localStorage 里存储的完整链接
+                // target="_blank" 表示在新窗口打开，如果你想在当前页跳转，去掉它即可
                 li.innerHTML = `
-                    <span class="history-link">${item.title}</span>
+                    <a href="${item.url}" class="history-link" target="_blank">${item.title}</a>
                     <span class="history-time">${item.time}</span>
                 `;
+                // --- 修改结束 ---
+
                 listEl.appendChild(li);
             });
         }
 
-        // 5. 清除功能
+        // 2. 初始化：只读取，不写入 (符合你不想记录Index的需求)
+        const currentHistory = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        renderHistory(currentHistory);
+
+
+        // 3. 清除功能
         function clearHistory() {
             localStorage.removeItem(STORAGE_KEY);
-            renderHistory([]); // 重新渲染空状态
-            // 重新记录当前页，以免列表彻底消失
-            recordPage(); 
-            // 刷新页面显示当前
-            window.location.reload();
+            renderHistory([]); 
         }
-
-        // --- 初始化执行 ---
-        const updatedHistory = recordPage();
-        renderHistory(updatedHistory);
 
     </script>
 </body>
