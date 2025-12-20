@@ -171,7 +171,7 @@
 
                 <p>我凑近细看。笼身泛着柔和的光泽，想必是千百年来被无数双手把玩摩挲，才会如此温润。其中玉雕，羽毛根根分明振翅欲飞——但它永远也飞不出那层玉砌的竹影。</p>
 
-                <p>就像我所弹的箜篌，就像我所走的每一步，我在接待客户时所展露的每一次微笑。<br>鸟的鸣叫，鸟的振翅，鸟的羽毛。</p>
+                <p>就像我所弹的箜篌，就像我所走的每一步，就像我在接待客户时所展露的每一次微笑。<br>鸟的鸣叫，鸟的振翅，鸟的羽毛。</p>
 
                 <p>我被允许存在在这座名为“憩园”的广大庭院里，只因我是这宁静氛围的一部分，是母亲“收藏”与“展示”的一部分。</p>
 
@@ -186,5 +186,27 @@
         </main>
     </div>
 
+<script>
+    (function() {
+        const STORAGE_KEY = 'qiyuan_browsing_history';
+        const pageInfo = {
+            title: document.title || '未知页面', 
+            url: window.location.href,
+            time: new Date().toLocaleTimeString('zh-CN', {hour: '2-digit', minute:'2-digit'})
+        };
+
+        let history = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        
+        // 防止瞬间重复刷新
+        if (history.length === 0 || history[history.length - 1].url !== pageInfo.url) {
+            history.push(pageInfo);
+            
+            // 【注意】这里不再限制数量了，有多少存多少
+            // 只要硬盘（localStorage）没满，它就会一直记
+            
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+        }
+    })();
+</script>
 </body>
 </html>
